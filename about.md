@@ -7,6 +7,8 @@ title: About
   This is a blog about programming. If reading about F# annoys you, it is in your best interest not to be here.
 </p>
 
+This line needs to be here, because apparently somebody has a bug, and the next heading disappears somehow if this space is empty.
+
 ## Technical Info
 
 This blog is hosted on [GitHub Pages](https://pages.github.com), which uses [Jekyll](http://jekyllrb.com). The layout is [Lanyon](http://lanyon.getpoole.com) (based on [GitHub](https://github.com/poole/poole)); the theme is a modification of `.theme-base-08`.

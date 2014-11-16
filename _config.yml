@@ -6,8 +6,8 @@ pygments:         true
 permalink:        pretty
 
 # Setup
-title:            TDD
-tagline:          'TDD'
+title:            Tea Drinking Development
+tagline:          'I'd drink code, too, if that was a thing.'
 description:      'TDD'
 url:              http://TeaDrivenDev.github.io
 

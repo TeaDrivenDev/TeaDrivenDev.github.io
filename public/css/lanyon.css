@@ -434,6 +434,7 @@ a.pagination-item:hover {
 .theme-base-08d {
 	background-color: #303030;
 	color: #d0d0d0;
+	font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
 }
 
 .theme-base-08d .sidebar,
@@ -445,10 +446,11 @@ a.pagination-item:hover {
 .theme-base-08d .sidebar-toggle,
 .theme-base-08d .related-posts li a:hover {
   color: #ac4142;
-  
+}
+
 .theme-base-08d .container {
 	text-align: justify;
-	width: 85%;
+	max-width: 85%;
 }
 
 /* Red */

@@ -1,0 +1,25 @@
+# Dependencies
+markdown:         redcarpet
+pygments:         true
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            TDD
+tagline:          'TDD'
+description:      'TDD'
+url:              http://TeaDrivenDev.github.io
+
+author:
+  name:           'TeaDrivenDev'
+  url:            https://twitter.com/TeaDrivenDev
+
+paginate:         5
+baseurl:          /
+
+# Custom vars
+version:          1.0.0
+
+github:
+  repo:           https://github.com/TeaDrivenDev/TeaDrivenDev.github.io

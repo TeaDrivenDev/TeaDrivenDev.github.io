@@ -1,0 +1,1 @@
+Mine. You may read it. Real license forthcoming.

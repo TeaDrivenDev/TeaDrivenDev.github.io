@@ -16,7 +16,6 @@ author:
   url:            https://twitter.com/TeaDrivenDev
 
 paginate:         5
-baseurl:          /
 
 # Custom vars
 version:          1.0.0

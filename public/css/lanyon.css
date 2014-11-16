@@ -444,7 +444,13 @@ a.pagination-item:hover {
 }
 .theme-base-08d .container a,
 .theme-base-08d .sidebar-toggle,
-.theme-base-08d .related-posts li a:hover {
+.theme-base-08d .related-posts li a:hover,
+.theme-base-08d .page h1,
+.theme-base-08d .page h2,
+.theme-base-08d .page h3,
+.theme-base-08d .page h4,
+.theme-base-08d .page h5,
+.theme-base-08d .page h6 {
   color: #ac4142;
 }
 

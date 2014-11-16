@@ -9,4 +9,4 @@ title: About
 
 ## Technical Info
 
-This blog is hosted on [GitHub Pages](https://pages.github.com), which uses [Jekyll](http://jekyllrb.com). The layout is [Lanyon](http://lanyon.getpoole.com) (based on [Poole](https://github.com/poole/poole)); the theme is a modification of `.theme-base-08`.
+This blog is hosted on [GitHub Pages](https://pages.github.com), which uses [Jekyll](http://jekyllrb.com). The theme is [Lanyon](http://lanyon.getpoole.com) (based on [Poole](https://github.com/poole/poole)); the color scheme is a modification of `.theme-base-08`.

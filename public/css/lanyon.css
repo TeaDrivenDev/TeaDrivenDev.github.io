@@ -453,6 +453,10 @@ a.pagination-item:hover {
 	max-width: 85%;
 }
 
+.theme-base-08d .post {
+	font-size: 16px;
+}
+
 /* Red */
 .theme-base-08 .sidebar,
 .theme-base-08 .sidebar-toggle:active,

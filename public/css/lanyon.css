@@ -450,7 +450,10 @@ a.pagination-item:hover {
 .theme-base-08d .page h3,
 .theme-base-08d .page h4,
 .theme-base-08d .page h5,
-.theme-base-08d .page h6 {
+.theme-base-08d .page h6,
+.theme-base-08d .page-title,
+.theme-base-08d .post-title,
+.theme-base-08d .post-title a {
   color: #ac4142;
 }
 

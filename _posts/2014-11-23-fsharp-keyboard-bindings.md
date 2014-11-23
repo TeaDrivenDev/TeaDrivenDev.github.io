@@ -21,18 +21,18 @@ Oh, and I also found a way on Stack Overflow to keep the Caps Lock toggle functi
 
 The actual bindings I went with are as follows:
  
- * Caps Lock: `|>&nbsp;`
- * Shift+Caps Lock: `<|&nbsp;`
- * Ctrl+Caps Lock: `>>&nbsp;`
- * Shift+Ctrl+Caps Lock: `<<&nbsp;`
- * Alt+Caps Lock: `->&nbsp;`
- * Shift+Alt+Caps Lock: `<-&nbsp;`
- * Ctrl+#: `let&nbsp;`
- * Shift+Ctrl+#: `fun&nbsp;`
- * Alt+Ctrl+#: `match&nbsp;&nbsp;with`
+ * Caps Lock: `|> `
+ * Shift+Caps Lock: `<| `
+ * Ctrl+Caps Lock: `>> `
+ * Shift+Ctrl+Caps Lock: `<< `
+ * Alt+Caps Lock: `-> `
+ * Shift+Alt+Caps Lock: `<- `
+ * Ctrl+#: `let `
+ * Shift+Ctrl+#: `fun `
+ * Alt+Ctrl+#: `match  with`
  * Windows+Caps Lock: Caps Lock
 
-Note that after the operators and `let` and `fun` keywords, I already included a space, because I'll always want that, and between `match` and `with`, there are two, and the caret will be placed between them, because I'll always want that too. There is no "surround" functionality as it is possible with Visual Studio snippets or ReSharper templates; while that *could* be done, it would be quite an ordeal (I looked into it) and didn't seem important enough to really bother with it.
+Note that after the operators and `let` and `fun` keywords, I already included a space (I haven't gotten the HTML to properly show that), because I'll always want that, and between `match` and `with`, there are two, and the caret will be placed between them, because I'll always want that too. There is no "surround" functionality as it is possible with Visual Studio snippets or ReSharper templates; while that *could* be done, it would be quite an ordeal (I looked into it) and didn't seem important enough to really bother with it.
 
 The necessary steps are as follows:
 

@@ -40,6 +40,7 @@ The necessary steps are as follows:
 2. Run the application, and open the default script in Notepad with Ctrl+E.
 3. Paste in the following (you should be able to delete the default contents; as far as I remember, that's only informational text):
 
+```
     ; In case you think you may need Caps Lock again at some point,
     ; we'll move it over to Win+Caps Lock
     
@@ -85,7 +86,8 @@ The necessary steps are as follows:
     
     ; match .... with is Alt+Ctrl+#
     !^#::SendInput match{space}{space}with{left}{left}{left}{left}{left}
-    
+```
+
 4. Save and close the file, and reload the script in AutoHotkey with Ctrl+R.
 
 The keyboard bindings will now be active whenever AutoHotkey is running. If you want *that* to be **always**, put AutoHotkey in the Startup folder in the start menu. If you already use AutoHotkey and want to keep this separate, you can also create a new `.ahk` file for the F# bindings and only run that when you need them; running the `.ahk` file directly should create an additional instance of AutoHotkey running alongside any existing ones.    

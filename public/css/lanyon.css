@@ -463,6 +463,11 @@ a.pagination-item:hover {
 	font-size: 16px;
 }
 
+.theme-base-08d code,
+.theme-base-08d pre {
+	background-color: #404040;
+}
+
 /* Red */
 .theme-base-08 .sidebar,
 .theme-base-08 .sidebar-toggle:active,

@@ -454,7 +454,8 @@ a.pagination-item:hover {
 .theme-base-08d .page-title,
 .theme-base-08d .post-title,
 .theme-base-08d .post-title a {
-  color: #ac4142;
+  color: #ff4142;
+  font-family: "Exo", sans-serif;
 }
 
 .theme-base-08d .page h1,
@@ -463,7 +464,6 @@ a.pagination-item:hover {
 .theme-base-08d .page h4,
 .theme-base-08d .page h5,
 .theme-base-08d .page h6 {
-  font-family: "Exo", sans-serif;
 }
 
 .theme-base-08d .container {

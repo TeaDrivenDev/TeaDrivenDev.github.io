@@ -432,9 +432,9 @@ a.pagination-item:hover {
 
 /* Red Dark */
 .theme-base-08d {
-	background-color: #303030;
+	background-color: #101010;
 	color: #d0d0d0;
-	font-family: Roboto, Helvetica, Sans Serif;
+	font-family: 'Titillium Web', sans-serif
 }
 
 .theme-base-08d .sidebar,

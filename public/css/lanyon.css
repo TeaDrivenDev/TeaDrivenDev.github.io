@@ -457,6 +457,15 @@ a.pagination-item:hover {
   color: #ac4142;
 }
 
+.theme-base-08d .page h1,
+.theme-base-08d .page h2,
+.theme-base-08d .page h3,
+.theme-base-08d .page h4,
+.theme-base-08d .page h5,
+.theme-base-08d .page h6 {
+  font-family: Exo, sans-serif;
+}
+
 .theme-base-08d .container {
 	text-align: justify;
 	max-width: 85%;

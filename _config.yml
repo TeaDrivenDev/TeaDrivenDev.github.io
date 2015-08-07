@@ -1,15 +1,17 @@
 # Dependencies
 markdown:         redcarpet
-pygments:         true
+highlighter:      pygments
 
 # Permalinks
 permalink:        pretty
+relative_permalinks: true
 
 # Setup
-title:            Tea Drinking Development
-tagline:          'I''d drink code, too, if that was a thing.'
+title:            'Tea Drinking Development'
+tagline:          'No sooner does one''s right, already works.'
 description:      'TDD'
 url:              http://TeaDrivenDev.github.io
+baseurl:          /
 
 author:
   name:           'TeaDrivenDev'

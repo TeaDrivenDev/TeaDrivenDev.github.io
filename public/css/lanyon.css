@@ -432,7 +432,7 @@ a.pagination-item:hover {
 
 /* Red Dark */
 .theme-base-08d {
-	background-color: #101010;
+	background-color: #000000;
 	color: #f0f0f0;
   font-family: "Titillium Web", Helvetica, sans-serif;
 }
@@ -460,11 +460,14 @@ a.pagination-item:hover {
 
 .theme-base-08d .container {
 	text-align: justify;
-	max-width: 85%;
+	max-width: 90%;
 }
 
 .theme-base-08d .post {
 	font-size: 16px;
+	background-color: #101010;
+	padding: 1.5em;
+	border-radius: 1em;
 }
 
 .theme-base-08d strong,

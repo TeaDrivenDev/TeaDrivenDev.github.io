@@ -482,8 +482,12 @@ a.pagination-item:hover {
 
 .theme-base-08d code,
 .theme-base-08d pre {
-	background-color: #404040;
+	background-color: #202020;
 	font-family: "Cousine", monospace;
+	width: 100%;
+	margin: 0px;
+	border-radius: 1em;
+	border-style: none;
 }
 
 /* Red */

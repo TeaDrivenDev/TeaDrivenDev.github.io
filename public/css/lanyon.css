@@ -472,6 +472,7 @@ a.pagination-item:hover {
 	background-color: #101010;
 	padding: 2em;
 	border-radius: 1em;
+	border: 1px solid #303030;
 }
 
 .theme-base-08d strong,

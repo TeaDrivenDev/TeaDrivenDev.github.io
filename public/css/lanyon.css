@@ -437,6 +437,10 @@ a.pagination-item:hover {
   font-family: "Titillium Web", Helvetica, sans-serif;
 }
 
+.theme-base-08d .masthead-title {
+  font-family: "Titillium Web", "Helvetica", sans-serif;
+}
+
 .theme-base-08d .sidebar,
 .theme-base-08d .sidebar-toggle:active,
 .theme-base-08d #sidebar-checkbox:checked ~ .sidebar-toggle {

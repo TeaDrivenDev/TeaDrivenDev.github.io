@@ -432,9 +432,13 @@ a.pagination-item:hover {
 
 /* Red Dark */
 .theme-base-08d {
-	background-color: #101010;
+	background-color: #000000;
 	color: #f0f0f0;
   font-family: "Titillium Web", Helvetica, sans-serif;
+}
+
+.theme-base-08d .masthead-title {
+  font-family: "Titillium Web", "Helvetica", sans-serif;
 }
 
 .theme-base-08d .sidebar,
@@ -460,11 +464,15 @@ a.pagination-item:hover {
 
 .theme-base-08d .container {
 	text-align: justify;
-	max-width: 85%;
+	max-width: 90%;
 }
 
 .theme-base-08d .post {
 	font-size: 16px;
+	background-color: #101010;
+	padding: 2em;
+	border-radius: 1em;
+	border: 1px solid #303030;
 }
 
 .theme-base-08d strong,
@@ -474,8 +482,12 @@ a.pagination-item:hover {
 
 .theme-base-08d code,
 .theme-base-08d pre {
-	background-color: #404040;
+	background-color: #202020;
 	font-family: "Cousine", monospace;
+	width: 100%;
+	margin: 0px;
+	border-radius: 1em;
+	border-style: none;
 }
 
 /* Red */

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<rss version="0.91">
+
+  <channel>
+    <title>F# Advent Calendar 2015</title>
+    <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
+    <description>F# Advent Calendar 2015</description>
+    <language>en-us</language>
+
+    <!--<image>
+ <title>Stephen's Web</title>
+ <url>http://www.downes.ca/images/rss.gif</url>
+ <link>http://www.downes.ca</link>
+ <width>90</width>
+ <height>36</height>
+ </image>-->
+
+    <item>
+      <title>Rachel Reese: How Jet Build Microservices with F#</title>
+      <link>http://techgroup.jet.com/blog/2015/11-27-how-jet-build-microservices-with/index.html</link>
+      <description />
+    </item>
+    <item>
+      <title>Jamie Dixon: Creating Dynamic Uris For Visual Studio Web Tests</title>
+      <link>https://jamessdixon.wordpress.com/2015/11/29/creating-dynamic-uris-for-visual-studio-web-tests/</link>
+      <description/>
+    </item>
+    <item>
+      <title>Steffen Forkmann: F# advent calendar: Using Async.Choice in Paket</title>
+      <link>http://www.navision-blog.de/blog/2015/11/30/fsadvent-using-async-choice-in-paket/</link>
+      <description />
+    </item>
+    <item>
+      <title>Bohdan Szymanik: Sharpen up your legacy app(s) performance with a bit of F#</title>
+      <link>http://bohdanszymanik.blogspot.co.nz/2015/11/sharpen-up-your-legacy-apps-performance.html</link>
+      <description/>
+    </item>
+  </channel>
+</rss>

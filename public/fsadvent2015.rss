@@ -5,88 +5,88 @@
     <description>F# Advent Calendar 2015</description>
     <language>en</language>
     <item>
-      <title>Nov 29 | Rachel Reese | How Jet Build Microservices with F#</title>
-      <link>http://techgroup.jet.com/blog/2015/11-27-how-jet-build-microservices-with/index.html</link>
-    </item>
-    <item>
-      <title>Nov 29 | Jamie Dixon | Creating Dynamic Uris For Visual Studio Web Tests</title>
-      <link>https://jamessdixon.wordpress.com/2015/11/29/creating-dynamic-uris-for-visual-studio-web-tests/</link>
-    </item>
-    <item>
-      <title>Nov 30 | Steffen Forkmann | F# advent calendar: Using Async.Choice in Paket</title>
-      <link>http://www.navision-blog.de/blog/2015/11/30/fsadvent-using-async-choice-in-paket/</link>
-    </item>
-    <item>
-      <title>Nov 30 | Bohdan Szymanik | Sharpen up your legacy app(s) performance with a bit of F#</title>
-      <link>http://bohdanszymanik.blogspot.co.nz/2015/11/sharpen-up-your-legacy-apps-performance.html</link>
-    </item>
-    <item>
-      <title>Dec 01 | Mark Seemann | Recurse</title>
-      <link>http://blog.ploeh.dk/2015/12/01/recurse/</link>
-    </item>
-    <item>
-      <title>Dec 01 | Kristian Schmidt | A roll of the Liar’s dice</title>
-      <link>http://www.kreutz.us/liarsdice/</link>
-    </item>
-    <item>
-      <title>Dec 02 | Mike Janger | Taking Ionide Out for a Spin</title>
-      <link>http://inchingforward.com/2015/12/taking-ionide-out-for-a-spin/</link>
-    </item>
-    <item>
-      <title>Dec 02 | Tomasz Jaskuλa | Data Science tools in F# through univariante linear regression</title>
-      <link>http://jaskula.fr//blog/2015/12-02-data-science-tools-in-f-through-univariante-linear-regression/index.html</link>
-    </item>
-    <item>
-      <title>Dec 03 | Phillip Trelford | Calendar Types</title>
-      <link>http://trelford.com/blog/post/calendar.aspx</link>
-    </item>
-    <item>
-      <title>Dec 03 | Jeremy Abbott | F# Events, Reactive Programming and Async Workflows</title>
-      <link>http://jeremyabbott.github.io/blog/2015/12-3-fsharp-events-rx-async/</link>
-    </item>
-    <item>
-      <title>Dec 04 | Richard Dalton | Azure WTF#</title>
-      <link>http://www.devjoy.com/2015/12/azure-wtf/</link>
-    </item>
-    <item>
-      <title>Dec 04 | Edgar Sánchez | Calculating a cannon ball trajectory, the fun way</title>
-      <link>http://cogitoergofun.ghost.io/calculating-a-cannon-ball-trajectory-the-fun-way/</link>
-    </item>
-    <item>
-      <title>Dec 05 | Scott Wlaschin | Thirteen ways of looking at a turtle</title>
-      <link>http://fsharpforfunandprofit.com/posts/13-ways-of-looking-at-a-turtle/</link>
-    </item>
-    <item>
-      <title>Dec 05 | Scott Wlaschin | Thirteen ways of looking at a turtle (part 2)</title>
-      <link>http://fsharpforfunandprofit.com/posts/13-ways-of-looking-at-a-turtle-2/</link>
-    </item>
-    <item>
-      <title>Dec 05 | Sean Trelford | No 1 at Christmas</title>
-      <link>https://seantrelfordblog.wordpress.com/2015/12/05/no1s/</link>
-    </item>
-    <item>
-      <title>Dec 06 | Andrea Magnorsky | Computation expressions and microphones</title>
-      <link>http://www.roundcrisis.com/2015/12/06/Computation-expressions-in-practice/</link>
-    </item>
-    <item>
-      <title>Dec 06 | Christopher Atkins | F# 2015 Advent Cookies</title>
-      <link>http://blog.christopher-atkins.com/fsharp-advent-2015/</link>
-    </item>
-    <item>
-      <title>Dec 07 | Sergey Tihon | Application contracts with Swagger powered APIs for .NET or Why SwaggerProvider</title>
-      <link>https://sergeytihon.wordpress.com/2015/12/07/application-contracts-with-swagger-powered-apis-for-net-or-why-swaggerprovider/</link>
-    </item>
-    <item>
-      <title>Dec 07 | Aaron Powell | What’s the time Mr Wolf?</title>
-      <link>http://www.aaron-powell.com//posts/2015-12-07-whats-the-time-mr-wolf.html</link>
+      <title>Dec 08 | Jonathan Wood | A Quick Look At F# In Visual Studio Code</title>
+      <link>http://www.wintellect.com/devcenter/jwood/a-quick-look-at-f-in-visual-studio-code</link>
     </item>
     <item>
       <title>Dec 08 | Isaac Abraham | F#, .NET and the Open Source situation</title>
       <link>https://cockneycoder.wordpress.com/2015/12/08/f-net-and-the-open-source-situation/</link>
     </item>
     <item>
-      <title>Dec 08 | Jonathan Wood | A Quick Look At F# In Visual Studio Code</title>
-      <link>http://www.wintellect.com/devcenter/jwood/a-quick-look-at-f-in-visual-studio-code</link>
+      <title>Dec 07 | Aaron Powell | What’s the time Mr Wolf?</title>
+      <link>http://www.aaron-powell.com//posts/2015-12-07-whats-the-time-mr-wolf.html</link>
+    </item>
+    <item>
+      <title>Dec 07 | Sergey Tihon | Application contracts with Swagger powered APIs for .NET or Why SwaggerProvider</title>
+      <link>https://sergeytihon.wordpress.com/2015/12/07/application-contracts-with-swagger-powered-apis-for-net-or-why-swaggerprovider/</link>
+    </item>
+    <item>
+      <title>Dec 06 | Christopher Atkins | F# 2015 Advent Cookies</title>
+      <link>http://blog.christopher-atkins.com/fsharp-advent-2015/</link>
+    </item>
+    <item>
+      <title>Dec 06 | Andrea Magnorsky | Computation expressions and microphones</title>
+      <link>http://www.roundcrisis.com/2015/12/06/Computation-expressions-in-practice/</link>
+    </item>
+    <item>
+      <title>Dec 05 | Sean Trelford | No 1 at Christmas</title>
+      <link>https://seantrelfordblog.wordpress.com/2015/12/05/no1s/</link>
+    </item>
+    <item>
+      <title>Dec 05 | Scott Wlaschin | Thirteen ways of looking at a turtle (part 2)</title>
+      <link>http://fsharpforfunandprofit.com/posts/13-ways-of-looking-at-a-turtle-2/</link>
+    </item>
+    <item>
+      <title>Dec 05 | Scott Wlaschin | Thirteen ways of looking at a turtle</title>
+      <link>http://fsharpforfunandprofit.com/posts/13-ways-of-looking-at-a-turtle/</link>
+    </item>
+    <item>
+      <title>Dec 04 | Edgar Sánchez | Calculating a cannon ball trajectory, the fun way</title>
+      <link>http://cogitoergofun.ghost.io/calculating-a-cannon-ball-trajectory-the-fun-way/</link>
+    </item>
+    <item>
+      <title>Dec 04 | Richard Dalton | Azure WTF#</title>
+      <link>http://www.devjoy.com/2015/12/azure-wtf/</link>
+    </item>
+    <item>
+      <title>Dec 03 | Jeremy Abbott | F# Events, Reactive Programming and Async Workflows</title>
+      <link>http://jeremyabbott.github.io/blog/2015/12-3-fsharp-events-rx-async/</link>
+    </item>
+    <item>
+      <title>Dec 03 | Phillip Trelford | Calendar Types</title>
+      <link>http://trelford.com/blog/post/calendar.aspx</link>
+    </item>
+    <item>
+      <title>Dec 02 | Tomasz Jaskuλa | Data Science tools in F# through univariante linear regression</title>
+      <link>http://jaskula.fr//blog/2015/12-02-data-science-tools-in-f-through-univariante-linear-regression/index.html</link>
+    </item>
+    <item>
+      <title>Dec 02 | Mike Janger | Taking Ionide Out for a Spin</title>
+      <link>http://inchingforward.com/2015/12/taking-ionide-out-for-a-spin/</link>
+    </item>
+    <item>
+      <title>Dec 01 | Kristian Schmidt | A roll of the Liar’s dice</title>
+      <link>http://www.kreutz.us/liarsdice/</link>
+    </item>
+    <item>
+      <title>Dec 01 | Mark Seemann | Recurse</title>
+      <link>http://blog.ploeh.dk/2015/12/01/recurse/</link>
+    </item>
+    <item>
+      <title>Nov 30 | Bohdan Szymanik | Sharpen up your legacy app(s) performance with a bit of F#</title>
+      <link>http://bohdanszymanik.blogspot.co.nz/2015/11/sharpen-up-your-legacy-apps-performance.html</link>
+    </item>
+    <item>
+      <title>Nov 30 | Steffen Forkmann | F# advent calendar: Using Async.Choice in Paket</title>
+      <link>http://www.navision-blog.de/blog/2015/11/30/fsadvent-using-async-choice-in-paket/</link>
+    </item>
+    <item>
+      <title>Nov 29 | Jamie Dixon | Creating Dynamic Uris For Visual Studio Web Tests</title>
+      <link>https://jamessdixon.wordpress.com/2015/11/29/creating-dynamic-uris-for-visual-studio-web-tests/</link>
+    </item>
+    <item>
+      <title>Nov 29 | Rachel Reese | How Jet Build Microservices with F#</title>
+      <link>http://techgroup.jet.com/blog/2015/11-27-how-jet-build-microservices-with/index.html</link>
     </item>
   </channel>
 </rss>

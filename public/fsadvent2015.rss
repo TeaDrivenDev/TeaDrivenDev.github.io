@@ -1,9 +1,24 @@
-<rss version="0.91">
+<rss version="2.0">
   <channel>
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
     <language>en</language>
+    <item>
+      <title>Dec 10 | Daniel Egloff | Algo Trading with F# and GPUs</title>
+      <link>http://blog.quantalea.com/?p=8391</link>
+      <pubDate>Thu, 10 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 09 | Peter Bayne | The trips and traps of creating a Generative Type Provider in F#</title>
+      <link>https://medium.com/@haumohio/the-trips-and-traps-of-creating-a-generative-type-provider-in-f-75162d99622c#.258c8w748</link>
+      <pubDate>Wed, 09 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 09 | Reed Copsey, Jr. | Christmas Trees in WPF using FSharp.ViewModule</title>
+      <link>http://reedcopsey.com/2015/12/09/christmas-trees-in-wpf-using-fsharp-viewmodule/</link>
+      <pubDate>Wed, 09 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 08 | Jonathan Wood | A Quick Look At F# In Visual Studio Code</title>
       <link>http://www.wintellect.com/devcenter/jwood/a-quick-look-at-f-in-visual-studio-code</link>

@@ -3,20 +3,460 @@ layout: page
 title: Making Busy Progress in F#
 ---
 
-(*
+<h2>Introduction</h2>
 
-##Introduction
+<p>As much as we like our software to be fast, and although computers get ever more powerful and paralleloriz0red, still not everything can happen instantly. There are long-running calculations, file I/O, network operations, <code>Thread.Sleep</code> and other things that require the user to wait for their completion, before they can use the result in any way.</p>
 
-As much as we like our software to be fast, and although computers get ever more powerful and paralleloriz0red, still not everything can happen instantly. There are long-running calculations, file I/O, network operations, `Thread.Sleep` and other things that require the user to wait for their completion, before they can use the result in any way.
+<p>It is considered common courtesy these days to not just let the application stall until an operation is completed and expect patience and understanding from the user; instead we'd like to let them know that something is happening and there is still hope that this "happening" will be over in a finite amount of time. And if we have any way of telling at which point of the process we are, we'll also want to pass that information on to the user, so they can plan the rest of their day accordingly.</p>
 
-It is considered common courtesy these days to not just let the application stall until an operation is completed and expect patience and understanding from the user; instead we'd like to let them know that something is happening and there is still hope that this "happening" will be over in a finite amount of time. And if we have any way of telling at which point of the process we are, we'll also want to pass that information on to the user, so they can plan the rest of their day accordingly.
+<p>The overall premise for what we're doing here is that a) we have a desktop application, say in WPF, and b) the "result" of our long-running operation is a state change in the application. The latter isn't very functional, because seen from our operation, it is a side effect, but that is how .NET desktop applications usually work.</p>
+
+<p>First we define some very basic types to describe our concept of "busy":</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">IBusy</span> <span class="o">=</span>
+    <span class="k">abstract</span> <span class="k">member</span> <span class="i">IsBusy</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="i">bool</span> <span class="k">with</span> <span class="i">get</span>, <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">set</span>
+    
+    <span class="c">// Setting this to `None` means we don&#39;t know what the actual progress is; we&#39;re just &quot;busy&quot; somehow.</span>
+    <span class="c">// UI controls like progress bars often have an &quot;indeterminate&quot; state for things like this.</span>
+    <span class="k">abstract</span> <span class="k">member</span> <span class="i">ProgressPercentage</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">float</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="i">option</span> <span class="k">with</span> <span class="i">get</span>, <span onmouseout="hideTip(event, 'fs5', 9)" onmouseover="showTip(event, 'fs5', 9)" class="i">set</span>
+    <span class="k">abstract</span> <span class="k">member</span> <span class="i">BusyMessage</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="i">string</span> <span class="k">with</span> <span class="i">get</span>, <span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="i">set</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>The implementation of <code>IBusy</code> will likely be something like a ViewModel, which will then take care of displaying a progress bar, a text control with the busy message and maybe some kind of overlay to lock down the application until our operation is complete - if we're loading new data for example, it probably makes no sense to let the user work in the application in the mean time. When we're done, we set <code>IsBusy</code> to <code>false</code>, and the application can be used again.</p>
+
+<p>Using this might look like this:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">busy</span><span class="o">.</span><span class="i">IsBusy</span> <span class="o">&lt;-</span> <span class="k">true</span>
+<span class="i">busy</span><span class="o">.</span><span class="i">BusyMessage</span> <span class="o">&lt;-</span> <span class="s">&quot;Processing things&quot;</span>
+<span class="i">busy</span><span class="o">.</span><span class="i">ProgressPercentage</span> <span class="o">&lt;-</span> <span onmouseout="hideTip(event, 'fs9', 19)" onmouseover="showTip(event, 'fs9', 19)" class="i">None</span>
+
+<span class="i">dataThings</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="i">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 21)" onmouseover="showTip(event, 'fs13', 21)" class="i">filter</span> (<span class="k">fun</span> <span class="i">thing</span> <span class="k">-&gt;</span> <span class="i">thing</span><span class="o">.</span><span class="i">Value</span><span class="o">.</span><span class="i">GetHashCode</span>() <span class="o">&lt;&gt;</span> <span class="n">12</span>)
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 22)" onmouseover="showTip(event, 'fs11', 22)" class="i">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 23)" onmouseover="showTip(event, 'fs14', 23)" class="i">map</span> (<span class="i">processDataThing</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs8', 24)" onmouseover="showTip(event, 'fs8', 24)" class="i">string</span>)
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 25)" onmouseover="showTip(event, 'fs11', 25)" class="i">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs15', 26)" onmouseover="showTip(event, 'fs15', 26)" class="i">toArray</span>
+<span class="o">|&gt;</span> <span class="i">asSnd</span> <span class="s">&quot;C:\DataThingResults\result.txt&quot;</span>
+<span class="o">|&gt;</span> <span class="i">File</span><span class="o">.</span><span class="i">WriteAllLines</span> 
+
+<span class="i">busy</span><span class="o">.</span><span class="i">IsBusy</span> <span class="o">&lt;-</span> <span class="k">false</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>This is of course the most naive way possible, and it requires doing everything by hand correctly every time we want to do something "busy".</p>
+
+<p>That will get annoying pretty quickly, so we'll put the whole <code>IBusy</code> handling in a function and then pass it the operation we want to execute:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">doBusy</span> (<span class="i">busy</span> <span class="o">:</span> <span class="i">IBusy</span>) <span class="i">busyMessage</span> <span class="i">operation</span> <span class="o">=</span>
+    <span class="i">busy</span><span class="o">.</span><span class="i">BusyMessage</span> <span class="o">&lt;-</span> <span class="i">busyMessage</span>
+    <span class="i">busy</span><span class="o">.</span><span class="i">IsBusy</span> <span class="o">&lt;-</span> <span class="k">true</span>
+    <span class="i">busy</span><span class="o">.</span><span class="i">ProgressPercentage</span> <span class="o">&lt;-</span> <span onmouseout="hideTip(event, 'fs9', 27)" onmouseover="showTip(event, 'fs9', 27)" class="i">None</span>
+
+    <span class="i">operation</span>()
+
+    <span class="i">busy</span><span class="o">.</span><span class="i">IsBusy</span> <span class="o">&lt;-</span> <span class="k">false</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>That's better - it takes all the manual work from us. We only need to say "do <code>operation</code> while telling the user you're busy, and when the operation is through, tell the user you're done". This is nice and declarative and really the minimum work we can have with this.</p>
+
+<p>But.... it doesn't work. Well, it does, but not as we'd like it to. I said above that we want to "not just let the application stall until an operation is completed and expect patience and understanding from the user" - but that is what will happen. Why? Because we're just running everything on the current thread, which in a desktop application will usually be the UI thread.</p>
+
+<p>If we're in WPF, chances are the thread will be blocked by <code>operation</code> before it has even managed to properly show the "busy" indication. And even if the user sees that, the whole application will now be frozen; the Windows task manager might even say "not responding", until at some point our operation completes and unblocks the thread. That is not very friendly.</p>
+
+<p>There are a number of ways to solve this in .NET, from "manual" threading control and <code>BackgroundWorker</code> to Tasks and C#'s <code>async</code>/<code>await</code> - and in F# we have the nicest of them all: asynchronous workflows. They all work a bit differently, and not with all of them, what we want to do is straightforward to achieve - with manual threading control via the <code>Thread</code> class for example, it would be quite an ordeal (but then, pretty much everything is).</p>
+
+<p>One thing that is different with F# async workflows from, say, <code>BackgroundWorker</code> or <code>async</code>/<code>await</code> is that we have to explicitly switch to a background thread, because it doesn't happen automatically. The upside is that we <em>have</em> that control, unlike the other implementations.</p>
+
+<p>Let's look at a <code>doBusyBackground</code> implementation of our function:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">doBusyBackground</span> (<span class="i">busy</span> <span class="o">:</span> <span class="i">IBusy</span>) <span class="i">busyMessage</span> <span class="i">operation</span> <span class="o">=</span>
+    <span class="i">busy</span><span class="o">.</span><span class="i">BusyMessage</span> <span class="o">&lt;-</span> <span class="i">busyMessage</span>
+    <span class="i">busy</span><span class="o">.</span><span class="i">IsBusy</span> <span class="o">&lt;-</span> <span class="k">true</span>
+    <span class="i">busy</span><span class="o">.</span><span class="i">ProgressPercentage</span> <span class="o">&lt;-</span> <span onmouseout="hideTip(event, 'fs9', 28)" onmouseover="showTip(event, 'fs9', 28)" class="i">None</span>
+
+    <span onmouseout="hideTip(event, 'fs16', 29)" onmouseover="showTip(event, 'fs16', 29)" class="i">async</span> {
+        <span class="k">let</span> <span class="i">context</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs1', 30)" onmouseover="showTip(event, 'fs1', 30)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs17', 31)" onmouseover="showTip(event, 'fs17', 31)" class="i">Threading</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs18', 32)" onmouseover="showTip(event, 'fs18', 32)" class="i">SynchronizationContext</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 33)" onmouseover="showTip(event, 'fs19', 33)" class="i">Current</span>
+        <span class="k">do!</span> <span onmouseout="hideTip(event, 'fs20', 34)" onmouseover="showTip(event, 'fs20', 34)" class="i">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs21', 35)" onmouseover="showTip(event, 'fs21', 35)" class="i">SwitchToThreadPool</span>()
+        
+        <span class="k">do!</span> <span onmouseout="hideTip(event, 'fs16', 36)" onmouseover="showTip(event, 'fs16', 36)" class="i">async</span> { <span class="i">operation</span>() }
+        
+        <span class="k">do!</span> <span onmouseout="hideTip(event, 'fs20', 37)" onmouseover="showTip(event, 'fs20', 37)" class="i">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 38)" onmouseover="showTip(event, 'fs22', 38)" class="i">SwitchToContext</span> <span class="i">context</span>
+        
+        <span class="i">busy</span><span class="o">.</span><span class="i">IsBusy</span> <span class="o">&lt;-</span> <span class="k">false</span>
+    }
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs20', 39)" onmouseover="showTip(event, 'fs20', 39)" class="i">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 40)" onmouseover="showTip(event, 'fs23', 40)" class="i">StartImmediate</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>As I said, we <em>have</em> control over which thread we're running on, and we <em>have</em> to exert it; that's why we first save the current synchronization context and restore it later on.</p>
+
+<p>Note that even though our <code>operation</code> function may have no asynchronous aspects in itself, we have to call it in an asynchronous workflow to have it executed on the thread we switched to on the <code>Async</code> class.</p>
+
+<p>But look at how easy that was! We just wrap something in an <code>async { }</code> block (some people claim it's a monad, but I refuse to believe that), and we can "await" it on a non-blocking fashion, which is what the <code>do!</code> accomplishes. It needs to be said that in this case <code>operation</code> has the type <code>unit -&gt; unit</code>, that means it is a completely self-contained effectful operation and returns no useful value. We will later see that we can just as well return values of any type from asynchronous workflows.</p>
+
+<p><code>Async.StartImmediate</code> is of type <code>Async&lt;unit&gt; -&gt; unit</code>, that means it takes an asynchronous operation and runs it in a "fire-and-forget" fashion until it completes, without returning a (useful) value.</p>
+
+<p>This current solution is a bit inflexible, though. Our operation will always run on the ThreadPool all the time, which may not be what we want, for example when we need to update UI elements at certain points. Of course we could capture the UI context when we construct the function, but that would start getting a bit convoluted.</p>
+
+<p>Let's split out moving an operation to the ThreadPool from our <code>doBusy</code> function (on the side we will also introduce a default busy message that should be correct in a lot of cases and that we can replace when we really need to):</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+<span class="l">28: </span>
+<span class="l">29: </span>
+<span class="l">30: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// This is essentially a glorified `string option`, but naming the cases makes it clearer what this is about.</span>
+<span class="c">// And thanks to F#&#39;s syntax it&#39;s almost free anyway.</span>
+<span class="k">type</span> <span class="i">BusyMessage</span> <span class="o">=</span> <span class="i">DefaultMessage</span> | <span class="i">Message</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs8', 41)" onmouseover="showTip(event, 'fs8', 41)" class="i">string</span>
 
 
-The overall premise for what we're doing here is that a) we have a desktop application, say in WPF, and b) the "result" of our long-running operation is a state change in the application. The latter isn't very functional, because seen from our operation, it is a side effect, but that is how .NET desktop applications usually work.
+<span class="k">let</span> <span class="i">doBusyAsync</span> (<span class="i">busy</span> <span class="o">:</span> <span class="i">IBusy</span>) <span class="i">busyMessage</span> <span class="i">operation</span> <span class="o">=</span>
+    <span class="i">busy</span><span class="o">.</span><span class="i">BusyMessage</span> <span class="o">&lt;-</span>
+        <span class="k">match</span> <span class="i">busyMessage</span> <span class="k">with</span>
+        | <span class="i">Message</span> <span class="i">message</span> <span class="k">-&gt;</span> <span class="i">message</span>
+        | <span class="i">DefaultMessage</span> <span class="k">-&gt;</span> <span class="s">&quot;Updating information&quot;</span>
+    <span class="i">busy</span><span class="o">.</span><span class="i">IsBusy</span> <span class="o">&lt;-</span> <span class="k">true</span>
+    <span class="i">busy</span><span class="o">.</span><span class="i">ProgressPercentage</span> <span class="o">&lt;-</span> <span onmouseout="hideTip(event, 'fs9', 42)" onmouseover="showTip(event, 'fs9', 42)" class="i">None</span>
 
-First we define some very basic types to describe our concept of "busy":
+    <span onmouseout="hideTip(event, 'fs16', 43)" onmouseover="showTip(event, 'fs16', 43)" class="i">async</span> {
+        <span class="k">do!</span> <span class="i">operation</span>
+        <span class="i">busy</span><span class="o">.</span><span class="i">IsBusy</span> <span class="o">&lt;-</span> <span class="k">false</span>
+    }
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs20', 44)" onmouseover="showTip(event, 'fs20', 44)" class="i">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 45)" onmouseover="showTip(event, 'fs23', 45)" class="i">StartImmediate</span>
 
-*)
+<span class="k">let</span> <span class="i">onThreadPool</span> <span class="i">operation</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs16', 46)" onmouseover="showTip(event, 'fs16', 46)" class="i">async</span> {
+        <span class="k">let</span> <span class="i">context</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs1', 47)" onmouseover="showTip(event, 'fs1', 47)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs17', 48)" onmouseover="showTip(event, 'fs17', 48)" class="i">Threading</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs18', 49)" onmouseover="showTip(event, 'fs18', 49)" class="i">SynchronizationContext</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 50)" onmouseover="showTip(event, 'fs19', 50)" class="i">Current</span>
+        <span class="k">do!</span> <span onmouseout="hideTip(event, 'fs20', 51)" onmouseover="showTip(event, 'fs20', 51)" class="i">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs21', 52)" onmouseover="showTip(event, 'fs21', 52)" class="i">SwitchToThreadPool</span>()
+
+        <span class="k">let!</span> <span class="i">result</span> <span class="o">=</span> <span class="i">operation</span>
+
+        <span class="k">do!</span> <span onmouseout="hideTip(event, 'fs20', 53)" onmouseover="showTip(event, 'fs20', 53)" class="i">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 54)" onmouseover="showTip(event, 'fs22', 54)" class="i">SwitchToContext</span> <span class="i">context</span>
+
+        <span class="k">return</span> <span class="i">result</span>
+    }
+</code></pre></td>
+</tr>
+</table>
+
+<p>If you look at the type of the <code>operation</code> argument of <code>doBusyAsync</code> (there are type tooltips in the code, like a compiler would give you - because there actually <em>is</em> a compiler that checks it!), it has changed from <code>unit -&gt; unit</code> in <code>doBusyBackground to</code>Async<unit><code>, that means it has to come "pre-wrapped" in an</code>async { }` block. That is necessary so <em>we</em> can decide what should go on the ThreadPool and what we want to run on the UI thread (or implement any other threading requirements we may have).</p>
+
+<p>Another thing to note is that we call <code>operation</code> without parentheses now - because it is not a normal F# function anymore, but an asynchronous workflow. "Awaiting" that with <code>do!</code> or <code>let!</code> (which have the same effect, with the difference that <code>let!</code> binds the result to a value we can then keep using, while <code>do!</code>.... doesn't) results it its execution, yielding the <code>'T</code> value of the <code>Async&lt;'T&gt;</code>. To be exact, nothing inside the <code>async { }</code> blocks actually gets executed until <code>Async.StartImmediate</code> (or one of a number of other <code>Async</code> functions like <code>Async.RunSynchronously</code> or <code>Async.StartWithContinuations</code>) is called. Everything up to that is just setting up the computation.</p>
+
+<p>Our new <code>onThreadPool</code> function is a little more generic than running on the ThreadPool in  <code>doBusyBackground</code> was: <code>operation</code> is not a function of type <code>unit -&gt; unit</code>, but also an <code>Async&lt;'a&gt;</code>, which means it returns a value of type <code>'a</code> (which can still be <code>unit</code>, of course). That means we can not only run "fire-and-forget" style code on the ThreadPool, but we can actually get results back. That sounds like a useful property for our code to have.</p>
+
+<p>It is especially useful when we consider something that should start to become clear when looking at our existing functions that use asynchronous workflows: They are highly composable. We can nest them and chain them, await them without hassle using <code>let!</code> and then use the result as a normal F# value. Did I mention we can make any piece of code "asynchronous" by putting <code>async { }</code> around it?</p>
+
+<p>If we put together what we have now, we can run an operation on a background thread while our application is "busy" as follows:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs16', 55)" onmouseover="showTip(event, 'fs16', 55)" class="i">async</span> { <span class="i">operationFunction</span>() } 
+<span class="o">|&gt;</span> <span class="i">onThreadPool</span>
+<span class="o">|&gt;</span> <span class="i">doBusyAsync</span> <span class="i">busy</span> <span class="i">DefaultMessage</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>When <code>operationFunction</code> completes, the "wrapper" asynchronous workflow created by <code>onThreadPool</code> returns the <code>unit</code> value to <code>doBusyAsync</code>, which does nothing with it, but sets <code>busy.IsBusy</code> to <code>false</code> and thus signals the application is idle again.</p>
+
+<p>Now, as you may have noticed, all of our <code>doBusy</code> implementations so far set <code>busy.ProgressPercentage</code> to <code>None</code>, because we have no way of way of knowing our actual progress - at least not in <code>doBusy</code>. The actual operation that we run may very well have that knowledge. How do we make use of it?</p>
+
+<p>Let's take our nonsensical "long-running operation" from the start of the post and turn it into a function.</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">processDataThings</span> <span class="i">dataThings</span> <span class="o">=</span>
+    <span class="i">dataThings</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 56)" onmouseover="showTip(event, 'fs24', 56)" class="i">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 57)" onmouseover="showTip(event, 'fs25', 57)" class="i">filter</span> (<span class="k">fun</span> <span class="i">thing</span> <span class="k">-&gt;</span> <span class="i">thing</span><span class="o">.</span><span class="i">Value</span><span class="o">.</span><span class="i">GetHashCode</span>() <span class="o">&lt;&gt;</span> <span class="n">12</span>)
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 58)" onmouseover="showTip(event, 'fs24', 58)" class="i">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs26', 59)" onmouseover="showTip(event, 'fs26', 59)" class="i">map</span> (<span class="i">processDataThing</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs8', 60)" onmouseover="showTip(event, 'fs8', 60)" class="i">string</span>)
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 61)" onmouseover="showTip(event, 'fs24', 61)" class="i">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 62)" onmouseover="showTip(event, 'fs27', 62)" class="i">toArray</span>
+    <span class="o">|&gt;</span> <span class="i">asSnd</span> <span class="s">&quot;C:\DataThingResults\result.txt&quot;</span>
+    <span class="o">|&gt;</span> <span class="i">File</span><span class="o">.</span><span class="i">WriteAllLines</span> 
+</code></pre></td>
+</tr>
+</table>
+
+<p>We know the total number of items in the list, and we can find a point in our processing where each individual item is processed, so in addition to the processing, we can also report a progress percentage.</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">processDataThingsAndReportPercentage</span> <span class="i">reportProgressPercentage</span> <span class="i">dataThings</span> <span class="o">=</span>
+    <span class="k">let</span> <span class="i">totalNumber</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs24', 63)" onmouseover="showTip(event, 'fs24', 63)" class="i">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs28', 64)" onmouseover="showTip(event, 'fs28', 64)" class="i">length</span> <span class="i">dataThings</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 65)" onmouseover="showTip(event, 'fs6', 65)" class="i">float</span>
+
+    <span class="k">let</span> <span class="i">reportProgress</span> <span class="i">i</span> <span class="o">=</span>
+        <span class="i">reportProgressPercentage</span> (<span onmouseout="hideTip(event, 'fs6', 66)" onmouseover="showTip(event, 'fs6', 66)" class="i">float</span> <span class="i">i</span> <span class="o">/</span> <span class="i">totalNumber</span>)
+
+    <span class="i">dataThings</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 67)" onmouseover="showTip(event, 'fs24', 67)" class="i">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 68)" onmouseover="showTip(event, 'fs25', 68)" class="i">filter</span> (<span class="k">fun</span> <span class="i">thing</span> <span class="k">-&gt;</span> <span class="i">thing</span><span class="o">.</span><span class="i">Value</span><span class="o">.</span><span class="i">GetHashCode</span>() <span class="o">&lt;&gt;</span> <span class="n">12</span>)
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 69)" onmouseover="showTip(event, 'fs24', 69)" class="i">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs29', 70)" onmouseover="showTip(event, 'fs29', 70)" class="i">mapi</span> (<span class="k">fun</span> <span class="i">i</span> <span class="i">thing</span> <span class="k">-&gt;</span>
+        <span class="i">reportProgress</span> <span class="i">i</span>
+        
+        <span class="i">thing</span> <span class="o">|&gt;</span> <span class="i">processDataThing</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 71)" onmouseover="showTip(event, 'fs8', 71)" class="i">string</span>)
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 72)" onmouseover="showTip(event, 'fs24', 72)" class="i">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 73)" onmouseover="showTip(event, 'fs27', 73)" class="i">toArray</span>
+    <span class="o">|&gt;</span> <span class="i">asSnd</span> <span class="s">&quot;C:\DataThingResults\result.txt&quot;</span>
+    <span class="o">|&gt;</span> <span class="i">File</span><span class="o">.</span><span class="i">WriteAllLines</span> 
+</code></pre></td>
+</tr>
+</table>
+
+<p>In the simplest case, the implementation of <code>reportProgressPercentage</code> will just be something like <code>fun percentage -&gt; busy.ProgressPercentage &lt;- Some percentage)</code>.</p>
+
+<p>Well, that probably kind of works, but rather looks like handicraft work (German: Gebastel, read: "gabustel"). Especially that <code>List.mapi</code> usage (that we need to be able to tell how many items we have already processed) can't even really be called a workaround anymore. It's just clueless gebastel.</p>
+
+<p>Another issue is that this way we would report our progress for every single item we process - if there are a lot of items (and if there weren't, we wouldn't need a computer to process them), that would mean using significant resources just to update the progress display with a frequency the human eye cannot possibly perceive - probably many thousands of times per second.</p>
+
+<p>Before we look at a better solution, let's consider something I mentioned at the very beginning: <strike>parrale....</strike> <strike>pallellara....</strike> running something on multiple cores instead of just one.</p>
+
+<p>Using the <code>FSharp.Collections.ParallelSeq</code> library, which provides an F# friendly API for Parallel LINQ, we can write the above as follows:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">processDataThingsParallel</span> <span class="i">reportProgress</span> <span class="i">dataThings</span> <span class="o">=</span>
+    <span class="i">dataThings</span>
+    <span class="o">|&gt;</span> <span class="i">PSeq</span><span class="o">.</span><span class="i">filter</span> (<span class="k">fun</span> <span class="i">thing</span> <span class="k">-&gt;</span> <span class="i">thing</span><span class="o">.</span><span class="i">Value</span><span class="o">.</span><span class="i">GetHashCode</span>() <span class="o">&lt;&gt;</span> <span class="n">12</span>)
+    <span class="o">|&gt;</span> <span class="i">PSeq</span><span class="o">.</span><span class="i">map</span> (<span class="k">fun</span> <span class="i">thing</span> <span class="k">-&gt;</span>
+        <span class="i">reportProgress</span> <span class="n">1</span>
+        
+        <span class="i">thing</span> <span class="o">|&gt;</span> <span class="i">processDataThing</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 74)" onmouseover="showTip(event, 'fs8', 74)" class="i">string</span>)
+    <span class="o">|&gt;</span> <span class="i">PSeq</span><span class="o">.</span><span class="i">toArray</span>
+    <span class="o">|&gt;</span> <span class="i">asSnd</span> <span class="s">&quot;C:\DataThingResults\result.txt&quot;</span>
+    <span class="o">|&gt;</span> <span class="i">File</span><span class="o">.</span><span class="i">WriteAllLines</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>Depending on the number of cores available and how well the work to be done is parallelizable, that can provide a massive performance boost (obviously, because that is kind of the point of having multiple cores in the first place). What happens here is that our input data will be split up into several parts, and the parts will be processed in parallel threads, each on its own core. Again depending on what our data and the actual processing look like, there is no way to tell how fast which thread is processing items, so until <code>PSeq.map</code> returns, we never actually know our progress. The only way to get at that would be counting processed items over all threads - and the way we do that is using <code>Interlocked.Increment</code>.</p>
+
+<p>Of course it isn't, but you believed that for a few clock cycles, right?</p>
+
+<p>What we will really be using is a nice facility that F# offers us called <code>MailboxProcessor</code>, F#'s own lightweight implementation of the <a href="https://en.wikipedia.org/wiki/Actor_model">Actor model</a>. In a very small nutshell, an "actor" is a.... thing that has a queue of messages (its own private one that nobody else can access), processes any incoming messages sequentially (that means it doesn't care about any new messages until it's done with the currently processed one) and generally can only be communicated with through messages sent to its queue.</p>
+
+<p>("MailboxProcessor" is a somewhat odd and unclear name; it is very common among F# programmers to alias the type to <code>Agent</code>.)</p>
+
+<p>A very nice property is that we do not have to care about it threading-wise - as long as we only send it messages and don't immediately expect an answer, it is detached from the threads that we have to handle and care about. It achieves that by also using asynchronous workflows and non-blocking waiting for incoming messages using <code>let!</code>, as we've seen before. The functionality of a <code>MailboxProcessor</code> is usually implemented using a tail recursive function that calls itself with the computed state from processing the current message to then wait for the next message.</p>
+
+<p>What we will let our Agent/Actor do is "collect" the progress updates from all the different threads our parallel sequence uses (that we don't even know about ourselves) and update our <code>IBusy</code> in a sensible interval, let's say every half second - that's more than fast enough for a user to get a good understanding of the actual progress.</p>
+
+<p>What we need to tell the <code>MailboxProcessor</code>s processing function for that is the total nuber of items to process - so we can calculate a percentage - and the update interval.</p>
+
+<p>When receiving a message, it will add the number of items reported to the current count, then check if the time passed since last setting<code>busy.ProgressPercentage</code> is greater than the update interval, and if so, update the progress value. (We will assume for this that the implementation of <code>IBusy</code> will take care of updating the value that's actually bound to the UI on the appropriate thread; otherwise we would need to do that in the <code>MailboxProcessor</code>, which we could, but don't really want to do.)</p>
+
+<p>For what we want to do, our processing logic doesn't need to know about the actual <code>MailboxProcessor</code>, so we will just give it a function of type <code>int -&gt; unit</code> to call.</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+<span class="l">28: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">getReportProgress</span> <span class="i">updateInterval</span> <span class="i">numberOfItems</span> (<span class="i">busy</span> <span class="o">:</span> <span class="i">IBusy</span>) <span class="o">=</span>
+    <span class="k">let</span> <span class="i">calculatePercentage</span> <span class="i">currentValue</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 75)" onmouseover="showTip(event, 'fs6', 75)" class="i">float</span> <span class="i">currentValue</span> <span class="o">/</span> <span onmouseout="hideTip(event, 'fs6', 76)" onmouseover="showTip(event, 'fs6', 76)" class="i">float</span> <span class="i">numberOfItems</span> <span class="o">*</span> <span class="n">100.</span>
+    
+    <span class="k">let</span> <span class="i">progress</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs30', 77)" onmouseover="showTip(event, 'fs30', 77)" class="i">MailboxProcessor</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs31', 78)" onmouseover="showTip(event, 'fs31', 78)" class="i">int</span><span class="o">&gt;</span><span class="o">.</span><span class="i">Start</span>(<span class="k">fun</span> <span class="i">queue</span> <span class="k">-&gt;</span>
+        <span class="k">let</span> <span class="k">rec</span> <span class="i">loop</span> <span class="i">lastCount</span> (<span class="i">lastPulseTime</span> <span class="o">:</span> <span class="i">DateTimeOffset</span>) <span class="o">=</span>
+            <span onmouseout="hideTip(event, 'fs16', 79)" onmouseover="showTip(event, 'fs16', 79)" class="i">async</span> {
+                <span class="k">let!</span> <span class="i">increment</span> <span class="o">=</span> <span class="i">queue</span><span class="o">.</span><span class="i">Receive</span>()
+
+                <span class="k">let</span> <span class="i">newCount</span> <span class="o">=</span> <span class="i">lastCount</span> <span class="o">+</span> <span class="i">increment</span>
+
+                <span class="k">let</span> <span class="i">pulseNow</span>, <span class="i">newLastPulseTime</span> <span class="o">=</span>
+                    <span class="k">let</span> <span class="i">now</span> <span class="o">=</span> <span class="i">DateTimeOffset</span><span class="o">.</span><span class="i">Now</span>
+                    
+                    <span class="k">if</span> <span class="i">now</span> <span class="o">-</span> <span class="i">lastPulseTime</span> <span class="o">&gt;</span> <span class="i">updateInterval</span>
+                    <span class="k">then</span> (<span class="k">true</span>, <span class="i">now</span>)
+                    <span class="k">else</span> (<span class="k">false</span>, <span class="i">lastPulseTime</span>)
+
+                <span class="k">if</span> <span class="i">pulseNow</span> <span class="k">then</span>
+                    <span class="i">newCount</span>
+                    <span class="o">|&gt;</span> <span class="i">calculatePercentage</span>
+                    <span class="o">|&gt;</span> (<span class="k">fun</span> <span class="i">progressValue</span> <span class="k">-&gt;</span> <span class="i">busy</span><span class="o">.</span><span class="i">ProgressPercentage</span> <span class="o">&lt;-</span> <span onmouseout="hideTip(event, 'fs32', 80)" onmouseover="showTip(event, 'fs32', 80)" class="i">Some</span> <span class="i">progressValue</span>)
+
+                <span class="k">return!</span> <span class="i">loop</span> <span class="i">newCount</span> <span class="i">newLastPulseTime</span>
+            }
+
+        <span class="i">loop</span> <span class="n">0</span> (<span class="i">DateTimeOffset</span><span class="o">.</span><span class="i">Now</span> <span class="o">-</span> (<span class="i">updateInterval</span> <span class="o">+</span> (<span class="i">TimeSpan</span><span class="o">.</span><span class="i">FromTicks</span> <span class="n">1L</span>))))
+        
+    <span class="i">progress</span><span class="o">.</span><span class="i">Post</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>Now again let's use all the things we've built together:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">reportProgress</span> <span class="o">=</span> <span class="i">getReportProgress</span> (<span class="i">TimeSpan</span><span class="o">.</span><span class="i">FromMilliseconds</span> <span class="n">500.</span>) (<span onmouseout="hideTip(event, 'fs11', 81)" onmouseover="showTip(event, 'fs11', 81)" class="i">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs33', 82)" onmouseover="showTip(event, 'fs33', 82)" class="i">length</span> <span class="i">dataThings</span>) <span class="i">busy</span>
+
+<span onmouseout="hideTip(event, 'fs16', 83)" onmouseover="showTip(event, 'fs16', 83)" class="i">async</span> { <span class="i">processDataThingsParallel</span> <span class="i">reportProgress</span> <span class="i">dataThings</span> }
+<span class="o">|&gt;</span> <span class="i">onThreadPool</span>
+<span class="o">|&gt;</span> <span class="i">doBusyAsync</span> <span class="i">busy</span> (<span class="i">Message</span> <span class="s">&quot;Processing thingses&quot;</span>)
+</code></pre></td>
+</tr>
+</table>
+
+<p>I think that ended up looking pretty tidy; didn't it?</p>
+
+<p><code>processDataThingsParallel</code> will be run on the ThreadPool and process its items using Parallel LINQ, while we have a "busy" display and get progress updates all the time. And when it's done, the "busy" display will disappear, and the application can be used again.</p>
+
+<p>Remember that all our <code>doBusy</code> implementations set <code>busy.ProgressPercentage</code> to <code>None</code>, so by default, we should have an "indeterminate progress" display, and in case our processing logic actually reports progress, it will then be set to <code>Some p</code>, and we'll have a value to show on screen.</p>
+
+<p>One issue I realized while writing this is that handling <code>reportProgress</code> like this isn't ideal, because it's easy to think "hey, that's a function to use for reporting progress, so now that I have that, I'll use it whenever I have progress to report", but in reality, it is parameterized for exactly this one usage (especially because we have already given it the total number of items), and it has the current count as a piece of internal state that can't be reset. That means it is <em>necessary</em> semantically to create a new <code>reportProgress</code> function every time we want an operation to report its progress, but there is nothing that forces us to do so. So that part of our API leaves room for improvement.</p>
+
+<p>A small note on the side - I always went with the concept of the "busy" display locking the application from user interaction; that of course doesn't have to be. It could just as well simply be a small progress bar in a tool bar or status bar that just shows up and disappears as needed. In that case we'd probably have two different implementations of <code>IBusy</code> - one that actually prevents the user from doing things, and one that doesn't.</p>
+
+<h2>Possible Enhancements</h2>
+
+<p>Although this has taken some time now, it is actually a rather simple solution (but probably sufficient much of the time) based on something I use in practice. This concept could be expanded upon in various ways, including things like</p>
+
+<ul>
+<li>Cancellation of "busy" operations</li>
+<li>"Batched" busy operations that run in a sequence and each report their own progress, with an additional overall progress value and display</li>
+<li>Concurrent, but independent busy operations that begin and end each in their own time, with a busy/progress display present as long as at least one busy operation is running</li>
+</ul>
+
+<h2>Acknowledgements</h2>
+
+<p>Shoutouts to <a href="https://twitter.com/ReidNEvans">Reid Evans</a>, whose idea the <code>doBusy</code> concept was and who even turned it into a <code>busy { }</code> <a href="https://gist.github.com/reidev275/656449fc88bba74bbfbd">computation expression</a> (and who incidentally is my F# advent calendar date-mate today), and to <a href="https://twitter.com/tomaspetricek">Tomas Petricek</a>, who validated the idea of the <code>onThreadPool</code> function.</p>
+
+<hr />
+
+<p>Written on my HP ZBook with <a href="http://ionide.io/">Ionide</a> and <a href="https://code.visualstudio.com/">Visual Studio Code</a></p>
 
 
 <div class="tip" id="fs1">namespace System</div>

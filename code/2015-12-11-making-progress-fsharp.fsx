@@ -7,14 +7,14 @@ title: Making Busy Progress in F#
 (**
 *This post is one of the December 11th entries in the English language [2015 F# Advent Calendar](https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/).*
 
-###Apologies
+####Apologies
 
 1. This is way, *way*, **way** longer than I indended it to be. Sorry.
 2. I started overhauling the blog style a while back, but obviously never completed it, which is why the code blocks look really strange, and also, and more annoyingly, the compiler tooltips currently don't work. I do need to fix that.
 
 ##Introduction
 
-As much as we like our software to be fast, and although computers get ever more powerful and paralleloriz0red, still not everything can happen instantly. There are long-running calculations, file I/O, network operations, `Thread.Sleep` and other things that require the user to wait for their completion, before they can use the result in any way.
+As much as we like our software to be fast, and although computers get ever more powerful and paralleloriz0red, still not everything can happen instantly. There are long-running calculations, file I/O, network operations, `Thread.Sleep` and other things that require the user to wait for their completion before they can use the result in any way.
 
 It is considered common courtesy these days to not just let the application stall until an operation is completed and expect patience and understanding from the user; instead we'd like to let them know that something is happening and there is still hope that this "happening" will be over in a finite amount of time. And if we have any way of telling at which point of the process we are, we'll also want to pass that information on to the user, so they can plan the rest of their day accordingly.
 
@@ -22,7 +22,7 @@ It is considered common courtesy these days to not just let the application stal
 
 The overall premise for what we're doing here is that a) we have a desktop application, say in WPF, and b) the "result" of our long-running operation is a state change in the application. The latter isn't very functional, because seen from our operation, it is a side effect, but that is how .NET desktop applications usually work.
 
-First we define some very basic types to describe our concept of "busy":
+First we define a basic type to describe our concept of "busy":
 *)
 
 (*** hide ***)
@@ -97,7 +97,7 @@ let doBusy (busy : IBusy) busyMessage operation =
     busy.IsBusy <- false
 
 (** 
-That's better - it takes all the manual work from us. We only need to say "do `operation` while telling the user you're busy, and when the operation is through, tell the user you're done". This is nice and declarative and really the minimum work we can have with this.
+That's better - it takes all the manual work from us. We only need to say "do `operation` while telling the user you're busy, and when the operation is through, signal the user you're done". This is nice and declarative and really the minimum work we can have with this.
 
 But.... it doesn't work. Well, it does, but not as we'd like it to. I said above that we want to "not just let the application stall until an operation is completed and expect patience and understanding from the user" - but that is what will happen. Why? Because we're just running everything on the current thread, which in a desktop application will usually be the UI thread.
 
@@ -134,9 +134,9 @@ As I said, we *have* control over which thread we're running on, and we *have* t
 
 Note that even though our `operation` function may have no asynchronous aspects in itself, we have to call it in an asynchronous workflow to have it executed on the thread we switched to on the `Async` class.
 
-But look at how easy that was! We just wrap something in an `async { }` block (some people claim it's a monad, but I refuse to believe that), and we can "await" it on a non-blocking fashion, which is what the `do!` accomplishes. It needs to be said that in this case `operation` has the type `unit -> unit`, that means it is a completely self-contained effectful operation and returns no useful value. We will later see that we can just as well return values of any type from asynchronous workflows.
+But look at how easy that was! We just wrap something in an `async { }` block (some people claim it's a monad, but I refuse to accept that), and we can "await" it on a non-blocking fashion, which is what the `do!` accomplishes. It needs to be said that in this case `operation` has the type `unit -> unit`, that means it is a completely self-contained effectful operation and returns no useful value. We will later see that we can just as well return values of any type from asynchronous workflows.
 
-`Async.StartImmediate` is of type `Async<unit> -> unit`, that means it takes an asynchronous operation and runs it in a "fire-and-forget" fashion until it completes, without returning a (useful) value.
+`Async.StartImmediate` is of type `Async<unit> -> unit`, that means it takes an asynchronous operation and runs it in a "fire-and-forget" fashion while itself returning immediately, but without a useful return value.
 
 This current solution is a bit inflexible, though. Our operation will always run on the ThreadPool all the time, which may not be what we want, for example when we need to update UI elements at certain points. Of course we could capture the UI context when we construct the function, but that would start getting a bit convoluted.
 
@@ -175,7 +175,7 @@ let onThreadPool operation =
 
 
 (**
-If we look at the type of the `operation` argument of `doBusyAsync`, it has changed from `unit -> unit` in `doBusyBackground to `Async&lt;unit>`, that means it has to come "pre-wrapped" in an `async { }` block. That is necessary so *we* can decide what should go on the ThreadPool and what we want to run on the UI thread (or implement any other threading requirements we may have).
+If we look at the type of the `operation` argument of `doBusyAsync`, it has changed from `unit -> unit` in `doBusyBackground` to `Async<unit>`, that means it has to come "pre-wrapped" in an `async { }` block. That is necessary so *we* can decide what should go on the ThreadPool and what we want to run on the UI thread (or implement any other threading requirements we may have).
 
 Another thing to note is that we call `operation` without parentheses now - because it is not a normal F# function anymore, but an asynchronous workflow. "Awaiting" that with `do!` or `let!` (which have the same effect, with the difference that `let!` binds the result to a value we can then keep using, while `do!`.... doesn't) results it its execution, yielding the `'T` value of the `Async<'T>`. To be exact, nothing inside the `async { }` blocks actually gets executed until `Async.StartImmediate` (or one of a number of other `Async` functions like `Async.RunSynchronously` or `Async.StartWithContinuations`) is called. Everything up to that is just setting up the computation.
 

@@ -18,27 +18,6 @@ First we define some very basic types to describe our concept of "busy":
 
 *)
 
-<p>*</p>
-
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
-<span class="l">6: </span>
-<span class="l">7: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">IBusy</span> <span class="o">=</span>
-    <span class="k">abstract</span> <span class="k">member</span> <span class="i">IsBusy</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="i">bool</span> <span class="k">with</span> <span class="i">get</span>, <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">set</span>
-    
-    <span class="c">// Setting this to `None` means we don&#39;t know what the actual progress is; we&#39;re just &quot;busy&quot; somehow.</span>
-    <span class="c">// UI controls like progress bars often have an &quot;indeterminate&quot; state for things like this.</span>
-    <span class="k">abstract</span> <span class="k">member</span> <span class="i">ProgressPercentage</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">float</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="i">option</span> <span class="k">with</span> <span class="i">get</span>, <span onmouseout="hideTip(event, 'fs5', 9)" onmouseover="showTip(event, 'fs5', 9)" class="i">set</span>
-    <span class="k">abstract</span> <span class="k">member</span> <span class="i">BusyMessage</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="i">string</span> <span class="k">with</span> <span class="i">get</span>, <span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="i">set</span>
-</code></pre></td>
-</tr>
-</table>
-
 
 <div class="tip" id="fs1">namespace System</div>
 <div class="tip" id="fs2">namespace System.IO</div>

@@ -3,15 +3,20 @@ layout: page
 title: Making Busy Progress in F#
 ---
 
-<h2>Introduction</h2>
+(*
 
-<p>As much as we like our software to be fast, and although computers get ever more powerful and paralleloriz0red, still not everything can happen instantly. There are long-running calculations, file I/O, network operations, <code>Thread.Sleep</code> and other things that require the user to wait for their completion, before they can use the result in any way.</p>
+##Introduction
 
-<p>It is considered common courtesy these days to not just let the application stall until an operation is completed and expect patience and understanding from the user; instead we'd like to let them know that something is happening and there is still hope that this "happening" will be over in a finite amount of time. And if we have any way of telling at which point of the process we are, we'll also want to pass that information on to the user, so they can plan the rest of their day accordingly.</p>
+As much as we like our software to be fast, and although computers get ever more powerful and paralleloriz0red, still not everything can happen instantly. There are long-running calculations, file I/O, network operations, `Thread.Sleep` and other things that require the user to wait for their completion, before they can use the result in any way.
 
-<p>The overall premise for what we're doing here is that a) we have a desktop application, say in WPF, and b) the "result" of our long-running operation is a state change in the application. The latter isn't very functional, because seen from our operation, it is a side effect, but that is how .NET desktop applications usually work.</p>
+It is considered common courtesy these days to not just let the application stall until an operation is completed and expect patience and understanding from the user; instead we'd like to let them know that something is happening and there is still hope that this "happening" will be over in a finite amount of time. And if we have any way of telling at which point of the process we are, we'll also want to pass that information on to the user, so they can plan the rest of their day accordingly.
 
-<p>First we define some very basic types to describe our concept of "busy":</p>
+
+The overall premise for what we're doing here is that a) we have a desktop application, say in WPF, and b) the "result" of our long-running operation is a state change in the application. The latter isn't very functional, because seen from our operation, it is a side effect, but that is how .NET desktop applications usually work.
+
+First we define some very basic types to describe our concept of "busy":
+
+*)
 
 <p>*</p>
 

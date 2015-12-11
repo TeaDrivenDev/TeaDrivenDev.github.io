@@ -271,7 +271,7 @@ What we need to tell the `MailboxProcessor`'s processing function for that is th
 
 When receiving a message, it will add the number of items reported to the current count, then check if the time passed since last setting`busy.ProgressPercentage` is greater than the update interval, and if so, update the progress value. (We will assume for this that the implementation of `IBusy` will take care of updating the value that's actually bound to the UI on the appropriate thread; otherwise we would need to do that in the `MailboxProcessor`, which we could, but don't really want to do.)
 
-For what we want to do, our processing logic doesn't need to know about the actual `MailboxProcessor`, so we will just give it a function of type `int -> unit` to call.
+For what we want to do, our processing logic doesn't need to know about the actual `MailboxProcessor`, so we will just give it a function of type `int -> unit` to call, which the `MailboxProcessor` already provides with its `Post()` method.
 *)
 
 let getReportProgress updateInterval numberOfItems (busy : IBusy) =
@@ -325,7 +325,7 @@ I think that ended up looking pretty tidy; didn't it?
 Remember that all our `doBusy` implementations set `busy.ProgressPercentage` to `None`, so by default, we should have an "indeterminate progress" display, and in case our processing logic actually reports progress, it will then be set to `Some p`, and we'll have a value to show on screen.
 
 
-One issue I realized while writing this is that handling `reportProgress` like this isn't ideal, because it's easy to think "hey, that's a function to use for reporting progress, so now that I have that, I'll use it whenever I have progress to report", but in reality, it is parameterized for exactly this one usage (especially because we have already given it the total number of items), and it has the current count as a piece of internal state that can't be reset. That means it is *necessary* semantically to create a new `reportProgress` function every time we want an operation to report its progress, but there is nothing that forces us to do so. So that part of our API leaves room for improvement.
+One issue I realized while writing this is that handling `reportProgress` like this isn't ideal, because it's easy to think "hey, that's a function to use for reporting progress, so now that I have that, I'll use it whenever I have progress to report", but in reality, it is parameterized for exactly this one usage (especially because we have already given it the total number of items), and it has the current count as a piece of internal state that can't be reset. That means it is *necessary* semantically to create a new `reportProgress` function every time we want an operation to report its progress, but there is nothing that *forces* us to do so. So that part of our API leaves room for improvement.
 
 
 A small note on the side - I always went with the concept of the "busy" display locking the application from user interaction; that of course doesn't have to be. It could just as well simply be a small progress bar in a tool bar or status bar that just shows up and disappears as needed. In that case we'd probably have two different implementations of `IBusy` - one that actually prevents the user from doing things, and one that doesn't.
@@ -336,7 +336,7 @@ Although this has taken some time now, it is actually a rather simple solution (
 
 - Cancellation of "busy" operations
 - "Batched" busy operations that run in a sequence and each report their own progress, with an additional overall progress value and display
-- Concurrent, but independent busy operations that begin and end each in their own time, with a busy/progress display present as long as at least one busy operation is running
+- Concurrent, but independent busy operations that begin and end each in their own time, with a busy/progress display present as long as at least *one* busy operation is running
 
 
 ## Acknowledgements

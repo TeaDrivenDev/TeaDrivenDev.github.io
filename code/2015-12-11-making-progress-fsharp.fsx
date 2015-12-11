@@ -5,12 +5,20 @@ title: Making Busy Progress in F#
 ---
 
 (**
+*This post is one of the December 11th entries in the English language [2015 F# Advent Calendar](https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/).*
+
+###Apologies
+
+1. This is way, *way*, **way** longer than I indended it to be. Sorry.
+2. I started overhauling the blog style a while back, but obviously never completed it, which is why the code blocks look really strange, and also, and more annoyingly, the compiler tooltips currently don't work. I do need to fix that.
+
 ##Introduction
 
 As much as we like our software to be fast, and although computers get ever more powerful and paralleloriz0red, still not everything can happen instantly. There are long-running calculations, file I/O, network operations, `Thread.Sleep` and other things that require the user to wait for their completion, before they can use the result in any way.
 
 It is considered common courtesy these days to not just let the application stall until an operation is completed and expect patience and understanding from the user; instead we'd like to let them know that something is happening and there is still hope that this "happening" will be over in a finite amount of time. And if we have any way of telling at which point of the process we are, we'll also want to pass that information on to the user, so they can plan the rest of their day accordingly.
 
+##Busify!
 
 The overall premise for what we're doing here is that a) we have a desktop application, say in WPF, and b) the "result" of our long-running operation is a state change in the application. The latter isn't very functional, because seen from our operation, it is a side effect, but that is how .NET desktop applications usually work.
 
@@ -95,6 +103,8 @@ But.... it doesn't work. Well, it does, but not as we'd like it to. I said above
 
 If we're in WPF, chances are the thread will be blocked by `operation` before it has even managed to properly show the "busy" indication. And even if the user sees that, the whole application will now be frozen; the Windows task manager might even say "not responding", until at some point our operation completes and unblocks the thread. That is not very friendly.
 
+##Thread Carefully
+
 There are a number of ways to solve this in .NET, from "manual" threading control and `BackgroundWorker` to Tasks and C#'s `async`/`await` - and in F# we have the nicest of them all: asynchronous workflows. They all work a bit differently, and not with all of them, what we want to do is straightforward to achieve - with manual threading control via the `Thread` class for example, it would be quite an ordeal (but then, pretty much everything is).
 
 One thing that is different with F# async workflows from, say, `BackgroundWorker` or `async`/`await` is that we have to explicitly switch to a background thread, because it doesn't happen automatically. The upside is that we *have* that control, unlike the other implementations.
@@ -137,7 +147,6 @@ Let's split out moving an operation to the ThreadPool from our `doBusy` function
 // And thanks to F#'s syntax it's almost free anyway.
 type BusyMessage = DefaultMessage | Message of string
 
-
 let doBusyAsync (busy : IBusy) busyMessage operation =
     busy.BusyMessage <-
         match busyMessage with
@@ -166,7 +175,7 @@ let onThreadPool operation =
 
 
 (**
-If you look at the type of the `operation` argument of `doBusyAsync` (there are type tooltips in the code, like a compiler would give you - because there actually *is* a compiler that checks it!), it has changed from `unit -> unit` in `doBusyBackground to `Async<unit>`, that means it has to come "pre-wrapped" in an `async { }` block. That is necessary so *we* can decide what should go on the ThreadPool and what we want to run on the UI thread (or implement any other threading requirements we may have).
+If we look at the type of the `operation` argument of `doBusyAsync`, it has changed from `unit -> unit` in `doBusyBackground to `Async&lt;unit>`, that means it has to come "pre-wrapped" in an `async { }` block. That is necessary so *we* can decide what should go on the ThreadPool and what we want to run on the UI thread (or implement any other threading requirements we may have).
 
 Another thing to note is that we call `operation` without parentheses now - because it is not a normal F# function anymore, but an asynchronous workflow. "Awaiting" that with `do!` or `let!` (which have the same effect, with the difference that `let!` binds the result to a value we can then keep using, while `do!`.... doesn't) results it its execution, yielding the `'T` value of the `Async<'T>`. To be exact, nothing inside the `async { }` blocks actually gets executed until `Async.StartImmediate` (or one of a number of other `Async` functions like `Async.RunSynchronously` or `Async.StartWithContinuations`) is called. Everything up to that is just setting up the computation.
 
@@ -184,6 +193,7 @@ async { operationFunction() }
 (**
 When `operationFunction` completes, the "wrapper" asynchronous workflow created by `onThreadPool` returns the `unit` value to `doBusyAsync`, which does nothing with it, but sets `busy.IsBusy` to `false` and thus signals the application is idle again.
 
+##Progress!
 
 Now, as you may have noticed, all of our `doBusy` implementations so far set `busy.ProgressPercentage` to `None`, because we have no way of way of knowing our actual progress - at least not in `doBusy`. The actual operation that we run may very well have that knowledge. How do we make use of it?
 
@@ -220,11 +230,13 @@ let processDataThingsAndReportPercentage reportProgressPercentage dataThings =
     |> File.WriteAllLines 
 
 (**
-In the simplest case, the implementation of `reportProgressPercentage` will just be something like `fun percentage -> busy.ProgressPercentage <- Some percentage)`.
+In the simplest case, the implementation of `reportProgressPercentage` will just be something like `fun percentage -> busy.ProgressPercentage <- Some percentage`.
 
 Well, that probably kind of works, but rather looks like handicraft work (German: Gebastel, read: "gabustel"). Especially that `List.mapi` usage (that we need to be able to tell how many items we have already processed) can't even really be called a workaround anymore. It's just clueless gebastel.
 
 Another issue is that this way we would report our progress for every single item we process - if there are a lot of items (and if there weren't, we wouldn't need a computer to process them), that would mean using significant resources just to update the progress display with a frequency the human eye cannot possibly perceive - probably many thousands of times per second. 
+
+##The Mailman Cometh
 
 Before we look at a better solution, let's consider something I mentioned at the very beginning: <strike>parrale....</strike> <strike>pallellara....</strike> running something on multiple cores instead of just one.
 
@@ -249,13 +261,13 @@ Of course it isn't, but you believed that for a few clock cycles, right?
 
 What we will really be using is a nice facility that F# offers us called `MailboxProcessor`, F#'s own lightweight implementation of the [Actor model](https://en.wikipedia.org/wiki/Actor_model). In a very small nutshell, an "actor" is a.... thing that has a queue of messages (its own private one that nobody else can access), processes any incoming messages sequentially (that means it doesn't care about any new messages until it's done with the currently processed one) and generally can only be communicated with through messages sent to its queue.
 
-("MailboxProcessor" is a somewhat odd and unclear name; it is very common among F# programmers to alias the type to `Agent`.)
+("MailboxProcessor" is a somewhat odd and unclear name; it is a common habit among F# programmers to alias the type to `Agent`.)
 
 A very nice property is that we do not have to care about it threading-wise - as long as we only send it messages and don't immediately expect an answer, it is detached from the threads that we have to handle and care about. It achieves that by also using asynchronous workflows and non-blocking waiting for incoming messages using `let!`, as we've seen before. The functionality of a `MailboxProcessor` is usually implemented using a tail recursive function that calls itself with the computed state from processing the current message to then wait for the next message.
 
 What we will let our Agent/Actor do is "collect" the progress updates from all the different threads our parallel sequence uses (that we don't even know about ourselves) and update our `IBusy` in a sensible interval, let's say every half second - that's more than fast enough for a user to get a good understanding of the actual progress.
 
-What we need to tell the `MailboxProcessor`s processing function for that is the total nuber of items to process - so we can calculate a percentage - and the update interval.
+What we need to tell the `MailboxProcessor`'s processing function for that is the total nuber of items to process - so we can calculate a percentage - and the update interval.
 
 When receiving a message, it will add the number of items reported to the current count, then check if the time passed since last setting`busy.ProgressPercentage` is greater than the update interval, and if so, update the progress value. (We will assume for this that the implementation of `IBusy` will take care of updating the value that's actually bound to the UI on the appropriate thread; otherwise we would need to do that in the `MailboxProcessor`, which we could, but don't really want to do.)
 
@@ -293,6 +305,8 @@ let getReportProgress updateInterval numberOfItems (busy : IBusy) =
 
 
 (**
+##It's Actually Really Simple
+
 Now again let's use all the things we've built together:
 *)
 
@@ -315,8 +329,6 @@ One issue I realized while writing this is that handling `reportProgress` like t
 
 
 A small note on the side - I always went with the concept of the "busy" display locking the application from user interaction; that of course doesn't have to be. It could just as well simply be a small progress bar in a tool bar or status bar that just shows up and disappears as needed. In that case we'd probably have two different implementations of `IBusy` - one that actually prevents the user from doing things, and one that doesn't.
-
-
 
 ## Possible Enhancements
 

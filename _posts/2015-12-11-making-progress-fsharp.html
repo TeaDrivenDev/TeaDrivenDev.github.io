@@ -3,11 +3,22 @@ layout: page
 title: Making Busy Progress in F#
 ---
 
+<p><em>This post is one of the December 11th entries in the English language <a href="https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/">2015 F# Advent Calendar</a>.</em></p>
+
+<h3>Apologies</h3>
+
+<ol>
+<li>This is way, <em>way</em>, <strong>way</strong> longer than I indended it to be. Sorry.</li>
+<li>I started overhauling the blog style a while back, but obviously never completed it, which is why the code blocks look really strange, and also, and more annoyingly, the compiler tooltips currently don't work. I do need to fix that.</li>
+</ol>
+
 <h2>Introduction</h2>
 
 <p>As much as we like our software to be fast, and although computers get ever more powerful and paralleloriz0red, still not everything can happen instantly. There are long-running calculations, file I/O, network operations, <code>Thread.Sleep</code> and other things that require the user to wait for their completion, before they can use the result in any way.</p>
 
 <p>It is considered common courtesy these days to not just let the application stall until an operation is completed and expect patience and understanding from the user; instead we'd like to let them know that something is happening and there is still hope that this "happening" will be over in a finite amount of time. And if we have any way of telling at which point of the process we are, we'll also want to pass that information on to the user, so they can plan the rest of their day accordingly.</p>
+
+<h2>Busify!</h2>
 
 <p>The overall premise for what we're doing here is that a) we have a desktop application, say in WPF, and b) the "result" of our long-running operation is a state change in the application. The latter isn't very functional, because seen from our operation, it is a side effect, but that is how .NET desktop applications usually work.</p>
 
@@ -96,6 +107,8 @@ title: Making Busy Progress in F#
 
 <p>If we're in WPF, chances are the thread will be blocked by <code>operation</code> before it has even managed to properly show the "busy" indication. And even if the user sees that, the whole application will now be frozen; the Windows task manager might even say "not responding", until at some point our operation completes and unblocks the thread. That is not very friendly.</p>
 
+<h2>Thread Carefully</h2>
+
 <p>There are a number of ways to solve this in .NET, from "manual" threading control and <code>BackgroundWorker</code> to Tasks and C#'s <code>async</code>/<code>await</code> - and in F# we have the nicest of them all: asynchronous workflows. They all work a bit differently, and not with all of them, what we want to do is straightforward to achieve - with manual threading control via the <code>Thread</code> class for example, it would be quite an ordeal (but then, pretty much everything is).</p>
 
 <p>One thing that is different with F# async workflows from, say, <code>BackgroundWorker</code> or <code>async</code>/<code>await</code> is that we have to explicitly switch to a background thread, because it doesn't happen automatically. The upside is that we <em>have</em> that control, unlike the other implementations.</p>
@@ -180,12 +193,10 @@ title: Making Busy Progress in F#
 <span class="l">27: </span>
 <span class="l">28: </span>
 <span class="l">29: </span>
-<span class="l">30: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// This is essentially a glorified `string option`, but naming the cases makes it clearer what this is about.</span>
 <span class="c">// And thanks to F#&#39;s syntax it&#39;s almost free anyway.</span>
 <span class="k">type</span> <span class="i">BusyMessage</span> <span class="o">=</span> <span class="i">DefaultMessage</span> | <span class="i">Message</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs8', 41)" onmouseover="showTip(event, 'fs8', 41)" class="i">string</span>
-
 
 <span class="k">let</span> <span class="i">doBusyAsync</span> (<span class="i">busy</span> <span class="o">:</span> <span class="i">IBusy</span>) <span class="i">busyMessage</span> <span class="i">operation</span> <span class="o">=</span>
     <span class="i">busy</span><span class="o">.</span><span class="i">BusyMessage</span> <span class="o">&lt;-</span>
@@ -216,7 +227,7 @@ title: Making Busy Progress in F#
 </tr>
 </table>
 
-<p>If you look at the type of the <code>operation</code> argument of <code>doBusyAsync</code> (there are type tooltips in the code, like a compiler would give you - because there actually <em>is</em> a compiler that checks it!), it has changed from <code>unit -&gt; unit</code> in <code>doBusyBackground to</code>Async<unit><code>, that means it has to come "pre-wrapped" in an</code>async { }` block. That is necessary so <em>we</em> can decide what should go on the ThreadPool and what we want to run on the UI thread (or implement any other threading requirements we may have).</p>
+<p>If we look at the type of the <code>operation</code> argument of <code>doBusyAsync</code>, it has changed from <code>unit -&gt; unit</code> in <code>doBusyBackground to</code>Async&amp;lt;unit&gt;<code>, that means it has to come "pre-wrapped" in an</code>async { }` block. That is necessary so <em>we</em> can decide what should go on the ThreadPool and what we want to run on the UI thread (or implement any other threading requirements we may have).</p>
 
 <p>Another thing to note is that we call <code>operation</code> without parentheses now - because it is not a normal F# function anymore, but an asynchronous workflow. "Awaiting" that with <code>do!</code> or <code>let!</code> (which have the same effect, with the difference that <code>let!</code> binds the result to a value we can then keep using, while <code>do!</code>.... doesn't) results it its execution, yielding the <code>'T</code> value of the <code>Async&lt;'T&gt;</code>. To be exact, nothing inside the <code>async { }</code> blocks actually gets executed until <code>Async.StartImmediate</code> (or one of a number of other <code>Async</code> functions like <code>Async.RunSynchronously</code> or <code>Async.StartWithContinuations</code>) is called. Everything up to that is just setting up the computation.</p>
 
@@ -238,6 +249,8 @@ title: Making Busy Progress in F#
 </table>
 
 <p>When <code>operationFunction</code> completes, the "wrapper" asynchronous workflow created by <code>onThreadPool</code> returns the <code>unit</code> value to <code>doBusyAsync</code>, which does nothing with it, but sets <code>busy.IsBusy</code> to <code>false</code> and thus signals the application is idle again.</p>
+
+<h2>Progress!</h2>
 
 <p>Now, as you may have noticed, all of our <code>doBusy</code> implementations so far set <code>busy.ProgressPercentage</code> to <code>None</code>, because we have no way of way of knowing our actual progress - at least not in <code>doBusy</code>. The actual operation that we run may very well have that knowledge. How do we make use of it?</p>
 
@@ -299,11 +312,13 @@ title: Making Busy Progress in F#
 </tr>
 </table>
 
-<p>In the simplest case, the implementation of <code>reportProgressPercentage</code> will just be something like <code>fun percentage -&gt; busy.ProgressPercentage &lt;- Some percentage)</code>.</p>
+<p>In the simplest case, the implementation of <code>reportProgressPercentage</code> will just be something like <code>fun percentage -&gt; busy.ProgressPercentage &lt;- Some percentage</code>.</p>
 
 <p>Well, that probably kind of works, but rather looks like handicraft work (German: Gebastel, read: "gabustel"). Especially that <code>List.mapi</code> usage (that we need to be able to tell how many items we have already processed) can't even really be called a workaround anymore. It's just clueless gebastel.</p>
 
 <p>Another issue is that this way we would report our progress for every single item we process - if there are a lot of items (and if there weren't, we wouldn't need a computer to process them), that would mean using significant resources just to update the progress display with a frequency the human eye cannot possibly perceive - probably many thousands of times per second.</p>
+
+<h2>The Mailman Cometh</h2>
 
 <p>Before we look at a better solution, let's consider something I mentioned at the very beginning: <strike>parrale....</strike> <strike>pallellara....</strike> running something on multiple cores instead of just one.</p>
 
@@ -340,13 +355,13 @@ title: Making Busy Progress in F#
 
 <p>What we will really be using is a nice facility that F# offers us called <code>MailboxProcessor</code>, F#'s own lightweight implementation of the <a href="https://en.wikipedia.org/wiki/Actor_model">Actor model</a>. In a very small nutshell, an "actor" is a.... thing that has a queue of messages (its own private one that nobody else can access), processes any incoming messages sequentially (that means it doesn't care about any new messages until it's done with the currently processed one) and generally can only be communicated with through messages sent to its queue.</p>
 
-<p>("MailboxProcessor" is a somewhat odd and unclear name; it is very common among F# programmers to alias the type to <code>Agent</code>.)</p>
+<p>("MailboxProcessor" is a somewhat odd and unclear name; it is a common habit among F# programmers to alias the type to <code>Agent</code>.)</p>
 
 <p>A very nice property is that we do not have to care about it threading-wise - as long as we only send it messages and don't immediately expect an answer, it is detached from the threads that we have to handle and care about. It achieves that by also using asynchronous workflows and non-blocking waiting for incoming messages using <code>let!</code>, as we've seen before. The functionality of a <code>MailboxProcessor</code> is usually implemented using a tail recursive function that calls itself with the computed state from processing the current message to then wait for the next message.</p>
 
 <p>What we will let our Agent/Actor do is "collect" the progress updates from all the different threads our parallel sequence uses (that we don't even know about ourselves) and update our <code>IBusy</code> in a sensible interval, let's say every half second - that's more than fast enough for a user to get a good understanding of the actual progress.</p>
 
-<p>What we need to tell the <code>MailboxProcessor</code>s processing function for that is the total nuber of items to process - so we can calculate a percentage - and the update interval.</p>
+<p>What we need to tell the <code>MailboxProcessor</code>'s processing function for that is the total nuber of items to process - so we can calculate a percentage - and the update interval.</p>
 
 <p>When receiving a message, it will add the number of items reported to the current count, then check if the time passed since last setting<code>busy.ProgressPercentage</code> is greater than the update interval, and if so, update the progress value. (We will assume for this that the implementation of <code>IBusy</code> will take care of updating the value that's actually bound to the UI on the appropriate thread; otherwise we would need to do that in the <code>MailboxProcessor</code>, which we could, but don't really want to do.)</p>
 
@@ -412,6 +427,8 @@ title: Making Busy Progress in F#
 </code></pre></td>
 </tr>
 </table>
+
+<h2>It's Actually Really Simple</h2>
 
 <p>Now again let's use all the things we've built together:</p>
 

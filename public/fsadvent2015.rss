@@ -5,6 +5,12 @@
     <description>F# Advent Calendar 2015</description>
     <language>en</language>
     <item>
+      <title>Dec 11 | Reid Evans | Providing Value with Trivial Abstraction in F#</title>
+      <link>http://reidev275.azurewebsites.net/providing-value-with-trivial-abstraction-in-f/</link>
+      <guid>http://reidev275.azurewebsites.net/providing-value-with-trivial-abstraction-in-f/</guid>
+      <pubDate>Fri, 11 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Dec 11 | @TeaDrivenDev | Making Busy Progress in F#</title>
       <link>http://teadrivendev.github.io/2015/12/11/making-progress-fsharp/</link>
       <guid>http://teadrivendev.github.io/2015/12/11/making-progress-fsharp/</guid>

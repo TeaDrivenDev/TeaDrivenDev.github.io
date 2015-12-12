@@ -3,6 +3,8 @@
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
+    <pubDate>Sat, 12 Dec 2015 18:24:54 GMT</pubDate>
+    <lastBuildDate>Sat, 12 Dec 2015 18:24:54 GMT</lastBuildDate>
     <language>en</language>
     <item>
       <title>Dec 12 | Riccardo Terrell | Solving the Santa Claus Problem in F#</title>
@@ -74,6 +76,12 @@
       <title>Dec 06 | Christopher Atkins | F# 2015 Advent Cookies</title>
       <link>http://blog.christopher-atkins.com/fsharp-advent-2015/</link>
       <guid>http://blog.christopher-atkins.com/fsharp-advent-2015/</guid>
+      <pubDate>Sun, 06 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 06 | Andrea Magnorsky | More Computation expressions</title>
+      <link>http://www.roundcrisis.com/2015/12/06/more-computation-expressions/</link>
+      <guid>http://www.roundcrisis.com/2015/12/06/more-computation-expressions/</guid>
       <pubDate>Sun, 06 Dec 2015 00:00:00 GMT</pubDate>
     </item>
     <item>

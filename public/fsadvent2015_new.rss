@@ -5,6 +5,18 @@
     <description>F# Advent Calendar 2015</description>
     <language>en</language>
     <item>
+      <title>Dec 12 | Riccardo Terrell | Solving the Santa Claus Problem in F#</title>
+      <link>http://www.rickyterrell.com/?p=68</link>
+      <guid>http://www.rickyterrell.com/?p=68</guid>
+      <pubDate>Sat, 12 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 12 | Eriawan Kusumawardho | What’s new in F# 4.0 in Visual Studio 2015</title>
+      <link>http://fsharpmonologue.blogspot.co.id/2015/12/whats-new-in-f-40-in-visual-studio-2015.html</link>
+      <guid>http://fsharpmonologue.blogspot.co.id/2015/12/whats-new-in-f-40-in-visual-studio-2015.html</guid>
+      <pubDate>Sat, 12 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Dec 11 | Reid Evans | Providing Value with Trivial Abstraction in F#</title>
       <link>http://reidev275.azurewebsites.net/providing-value-with-trivial-abstraction-in-f/</link>
       <guid>http://reidev275.azurewebsites.net/providing-value-with-trivial-abstraction-in-f/</guid>

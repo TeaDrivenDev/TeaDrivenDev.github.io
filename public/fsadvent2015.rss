@@ -3,9 +3,15 @@
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
-    <pubDate>Sat, 12 Dec 2015 18:24:54 GMT</pubDate>
-    <lastBuildDate>Sat, 12 Dec 2015 18:24:54 GMT</lastBuildDate>
+    <pubDate>Sun, 13 Dec 2015 20:15:04 GMT</pubDate>
+    <lastBuildDate>Sun, 13 Dec 2015 20:15:04 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 13 | @lenadroid | Learn the machine! #fsharp #accord.net</title>
+      <link>https://lenadroid.github.io/posts/machine-learning-fsharp-accorddotnet.html</link>
+      <guid>https://lenadroid.github.io/posts/machine-learning-fsharp-accorddotnet.html</guid>
+      <pubDate>Sun, 13 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 12 | Riccardo Terrell | Solving the Santa Claus Problem in F#</title>
       <link>http://www.rickyterrell.com/?p=68</link>
@@ -94,6 +100,12 @@
       <title>Dec 05 | Sean Trelford | No 1 at Christmas</title>
       <link>https://seantrelfordblog.wordpress.com/2015/12/05/no1s/</link>
       <guid>https://seantrelfordblog.wordpress.com/2015/12/05/no1s/</guid>
+      <pubDate>Sat, 05 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 05 | Scott Wlaschin | Thirteen ways of looking at a turtle – addendum</title>
+      <link>http://fsharpforfunandprofit.com/posts/13-ways-of-looking-at-a-turtle-3/</link>
+      <guid>http://fsharpforfunandprofit.com/posts/13-ways-of-looking-at-a-turtle-3/</guid>
       <pubDate>Sat, 05 Dec 2015 00:00:00 GMT</pubDate>
     </item>
     <item>

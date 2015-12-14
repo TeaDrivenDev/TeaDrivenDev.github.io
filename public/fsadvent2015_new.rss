@@ -3,13 +3,25 @@
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
-    <pubDate>Sun, 13 Dec 2015 20:15:04 GMT</pubDate>
-    <lastBuildDate>Sun, 13 Dec 2015 20:15:04 GMT</lastBuildDate>
+    <pubDate>Mon, 14 Dec 2015 15:16:52 GMT</pubDate>
+    <lastBuildDate>Mon, 14 Dec 2015 15:16:52 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 14 | Tomas Jansson | F#, event sourcing and CQRS tutorial… and agents</title>
+      <link>http://blog.2mas.xyz/fsharp-event-sourcing-and-cqrs-tutorial-and-agents/</link>
+      <guid>http://blog.2mas.xyz/fsharp-event-sourcing-and-cqrs-tutorial-and-agents/</guid>
+      <pubDate>Mon, 14 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 13 | @lenadroid | Learn the machine! #fsharp #accord.net</title>
       <link>https://lenadroid.github.io/posts/machine-learning-fsharp-accorddotnet.html</link>
       <guid>https://lenadroid.github.io/posts/machine-learning-fsharp-accorddotnet.html</guid>
+      <pubDate>Sun, 13 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 13 | Marcus Griep | Chiron: JSON + Ducks + Monads</title>
+      <link>https://neoeinstein.github.io/blog/2015/12-13-chiron-json-ducks-monads/index.html</link>
+      <guid>https://neoeinstein.github.io/blog/2015/12-13-chiron-json-ducks-monads/index.html</guid>
       <pubDate>Sun, 13 Dec 2015 00:00:00 GMT</pubDate>
     </item>
     <item>

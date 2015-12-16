@@ -3,9 +3,21 @@
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
-    <pubDate>Tue, 15 Dec 2015 17:24:39 GMT</pubDate>
-    <lastBuildDate>Tue, 15 Dec 2015 17:24:39 GMT</lastBuildDate>
+    <pubDate>Wed, 16 Dec 2015 19:29:04 GMT</pubDate>
+    <lastBuildDate>Wed, 16 Dec 2015 19:29:04 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 16 | Paulmichael Blasucci | A Mixed-Paradigm Recipe for Exposing Native Code</title>
+      <link>https://pblasucci.wordpress.com/2015/12/15/advent-drm-adt/</link>
+      <guid>https://pblasucci.wordpress.com/2015/12/15/advent-drm-adt/</guid>
+      <pubDate>Wed, 16 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 16 | Yan Cui | Advent of Code F# – Day 16</title>
+      <link>http://theburningmonk.com/2015/12/advent-of-code-f-day-16/</link>
+      <guid>http://theburningmonk.com/2015/12/advent-of-code-f-day-16/</guid>
+      <pubDate>Wed, 16 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 15 | Stachu Korick | Pseudocode-Driven Development with F#</title>
       <link>http://stachu.net/blog/post?postId=6</link>

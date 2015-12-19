@@ -3,9 +3,27 @@
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
-    <pubDate>Fri, 18 Dec 2015 14:37:16 GMT</pubDate>
-    <lastBuildDate>Fri, 18 Dec 2015 14:37:16 GMT</lastBuildDate>
+    <pubDate>Sat, 19 Dec 2015 15:52:48 GMT</pubDate>
+    <lastBuildDate>Sat, 19 Dec 2015 15:52:48 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 19 | Steven Pemberton | Let It Snow! A basic particle system in F# and WPF</title>
+      <link>http://stevenpemberton.net/blog/2015/12/19/Let-it-snow-FSharp-Advent-2015/</link>
+      <guid>http://stevenpemberton.net/blog/2015/12/19/Let-it-snow-FSharp-Advent-2015/</guid>
+      <pubDate>Sat, 19 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 19 | Michael Newton | Angels From the Realms of Glory</title>
+      <link>http://blog.mavnn.co.uk/angels-from-the-realms-of-glory/</link>
+      <guid>http://blog.mavnn.co.uk/angels-from-the-realms-of-glory/</guid>
+      <pubDate>Sat, 19 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 18 | Matt Hawkins | ReST vs CQRS: The Trigger Pattern</title>
+      <link>http://hawkins6423.github.io/</link>
+      <guid>http://hawkins6423.github.io/</guid>
+      <pubDate>Fri, 18 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 18 | Anton Tcholakov | Using F# for scientific instrument control</title>
       <link>https://medium.com/@ant_pt/using-f-for-scientific-instrument-control-b1ef04d20da0#.pmmatrcuk</link>

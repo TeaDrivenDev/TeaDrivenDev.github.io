@@ -3,9 +3,21 @@
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
-    <pubDate>Sat, 19 Dec 2015 15:52:48 GMT</pubDate>
-    <lastBuildDate>Sat, 19 Dec 2015 15:52:48 GMT</lastBuildDate>
+    <pubDate>Sun, 20 Dec 2015 23:41:49 GMT</pubDate>
+    <lastBuildDate>Sun, 20 Dec 2015 23:41:49 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 20 | Jorge Fioranelli | Reactive Messaging Patterns with F# and Akka.NET</title>
+      <link>http://jorgef.github.io/fsharpreactivepatterns/</link>
+      <guid>http://jorgef.github.io/fsharpreactivepatterns/</guid>
+      <pubDate>Sun, 20 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 20 | Juan M Gómez | Developing mobile apps at the speed of light</title>
+      <link>http://jmgomez.me/advent-calendar-developing-mobile-apps-at-the-spee/</link>
+      <guid>http://jmgomez.me/advent-calendar-developing-mobile-apps-at-the-spee/</guid>
+      <pubDate>Sun, 20 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 19 | Steven Pemberton | Let It Snow! A basic particle system in F# and WPF</title>
       <link>http://stevenpemberton.net/blog/2015/12/19/Let-it-snow-FSharp-Advent-2015/</link>

@@ -3,9 +3,21 @@
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
-    <pubDate>Sun, 20 Dec 2015 23:41:49 GMT</pubDate>
-    <lastBuildDate>Sun, 20 Dec 2015 23:41:49 GMT</lastBuildDate>
+    <pubDate>Mon, 21 Dec 2015 16:56:40 GMT</pubDate>
+    <lastBuildDate>Mon, 21 Dec 2015 16:56:40 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 21 | Tomasz Heimowski | Property-based testing XSLT</title>
+      <link>http://theimowski.com/blog/2015/12-21-property-based-testing-xslt/index.html</link>
+      <guid>http://theimowski.com/blog/2015/12-21-property-based-testing-xslt/index.html</guid>
+      <pubDate>Mon, 21 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 21 | Steffen Forkmann | Automatic re-build and background tasks for suave.io websites</title>
+      <link>http://www.navision-blog.de/blog/2015/12/21/adding-background-tasks-to-suave-io-websites/</link>
+      <guid>http://www.navision-blog.de/blog/2015/12/21/adding-background-tasks-to-suave-io-websites/</guid>
+      <pubDate>Mon, 21 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 20 | Jorge Fioranelli | Reactive Messaging Patterns with F# and Akka.NET</title>
       <link>http://jorgef.github.io/fsharpreactivepatterns/</link>

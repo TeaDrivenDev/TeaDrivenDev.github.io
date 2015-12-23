@@ -3,13 +3,25 @@
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
-    <pubDate>Tue, 22 Dec 2015 12:18:12 GMT</pubDate>
-    <lastBuildDate>Tue, 22 Dec 2015 12:18:12 GMT</lastBuildDate>
+    <pubDate>Wed, 23 Dec 2015 12:06:34 GMT</pubDate>
+    <lastBuildDate>Wed, 23 Dec 2015 12:06:34 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 23 | Troy Kershaw | Getting Started with SignalR using F# and OWIN</title>
+      <link>http://troykershaw.com/blog/getting-started-with-signalr-fsharp-owin/</link>
+      <guid>http://troykershaw.com/blog/getting-started-with-signalr-fsharp-owin/</guid>
+      <pubDate>Wed, 23 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 22 | Chad Boyer | F# Advent Calendar 2015</title>
       <link>http://www.cylentware.com/blog/post/F-Advent-Calendar-2015</link>
       <guid>http://www.cylentware.com/blog/post/F-Advent-Calendar-2015</guid>
+      <pubDate>Tue, 22 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 22 | Mathias Brandewinder | Hacking together @wbfacts, a World Bank Twitter Bot</title>
+      <link>http://www.clear-lines.com/blog/post/hacking-together-wbfacts-a-World-Bank-Twitter-Bot.aspx</link>
+      <guid>http://www.clear-lines.com/blog/post/hacking-together-wbfacts-a-World-Bank-Twitter-Bot.aspx</guid>
       <pubDate>Tue, 22 Dec 2015 00:00:00 GMT</pubDate>
     </item>
     <item>

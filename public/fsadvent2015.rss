@@ -3,13 +3,19 @@
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
-    <pubDate>Wed, 23 Dec 2015 12:06:34 GMT</pubDate>
-    <lastBuildDate>Wed, 23 Dec 2015 12:06:34 GMT</lastBuildDate>
+    <pubDate>Wed, 23 Dec 2015 18:34:39 GMT</pubDate>
+    <lastBuildDate>Wed, 23 Dec 2015 18:34:39 GMT</lastBuildDate>
     <language>en</language>
     <item>
       <title>Dec 23 | Troy Kershaw | Getting Started with SignalR using F# and OWIN</title>
       <link>http://troykershaw.com/blog/getting-started-with-signalr-fsharp-owin/</link>
       <guid>http://troykershaw.com/blog/getting-started-with-signalr-fsharp-owin/</guid>
+      <pubDate>Wed, 23 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 23 | Carsten König | F# advent 2015 – some fun with lambda calculus</title>
+      <link>http://gettingsharper.de/2015/12/23/f-advent-2015-some-fun-with-lambda-calculus/</link>
+      <guid>http://gettingsharper.de/2015/12/23/f-advent-2015-some-fun-with-lambda-calculus/</guid>
       <pubDate>Wed, 23 Dec 2015 00:00:00 GMT</pubDate>
     </item>
     <item>

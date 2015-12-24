@@ -3,9 +3,15 @@
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
-    <pubDate>Thu, 24 Dec 2015 04:28:14 GMT</pubDate>
-    <lastBuildDate>Thu, 24 Dec 2015 04:28:14 GMT</lastBuildDate>
+    <pubDate>Thu, 24 Dec 2015 14:56:29 GMT</pubDate>
+    <lastBuildDate>Thu, 24 Dec 2015 14:56:29 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 24 | Matthew Sottile | Comparing trees, functionally</title>
+      <link>http://syntacticsalt.com/2015/12/24/comparing-trees-functionally/</link>
+      <guid>http://syntacticsalt.com/2015/12/24/comparing-trees-functionally/</guid>
+      <pubDate>Thu, 24 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 23 | Troy Kershaw | Getting Started with SignalR using F# and OWIN</title>
       <link>http://troykershaw.com/blog/getting-started-with-signalr-fsharp-owin/</link>

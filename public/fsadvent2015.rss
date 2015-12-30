@@ -3,9 +3,15 @@
     <title>F# Advent Calendar 2015</title>
     <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
     <description>F# Advent Calendar 2015</description>
-    <pubDate>Tue, 29 Dec 2015 14:08:48 GMT</pubDate>
-    <lastBuildDate>Tue, 29 Dec 2015 14:08:48 GMT</lastBuildDate>
+    <pubDate>Thu, 31 Dec 2015 00:04:06 GMT</pubDate>
+    <lastBuildDate>Thu, 31 Dec 2015 00:04:06 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 31 | Tomas Petricek | Happy New Year 2016 around the World</title>
+      <link>http://tomasp.net/blog/2015/happy-new-year-tweets/</link>
+      <guid>http://tomasp.net/blog/2015/happy-new-year-tweets/</guid>
+      <pubDate>Thu, 31 Dec 2015 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 29 | Tamizh Vendan | Implementing API Gateway in F# Using Rx and Suave</title>
       <link>http://blog.tamizhvendan.in/blog/2015/12/29/implementing-api-gateway-in-f-number-using-rx-and-suave/</link>

@@ -5,7 +5,7 @@ title: Pattern Matching (not only) on Record Fields
 ---
 
 (**
-## The Many Forms Of Tatching Muples
+## Quintuple Ways Of Matching Tuples
 
 Everyone who has used F# pattern matching knows how powerful it is, but interestingly it is often overlooked that all the different aspects are always equally applicable.
 
@@ -95,7 +95,7 @@ let printNamesFromRecord persons =
 (**
 Now, while this is pretty neat, I don't find myself using it a lot, which is in part due to the fact that when for example matching the argument of a lambda this way, you lose the reference to the record itself.
 
-##'as' Is It
+## 'as' Is It
 
 When I wrote this on Twitter, [Shane Charles](https://twitter.com/Dead_Stroke/status/684106309248024577) had the right answer: You can always additionally bind the original value to a name with the `as` keyword. Always.
 

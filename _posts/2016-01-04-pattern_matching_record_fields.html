@@ -1,0 +1,277 @@
+---
+layout: page
+title: Pattern Matching (not only) on Record Fields
+---
+
+<p>Everyone who has used F# pattern matching knows how powerful it is, but interestingly it is often overlooked that all the different aspects are always equally applicable.</p>
+
+<p>Destructuring tuples is something every F# programmer is probably well versed in in all its forms:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// simple destructuring assignment</span>
+<span class="k">let</span> <span class="i">getName</span> (<span class="i">nameTuple</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">string</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="i">string</span>) <span class="o">=</span>
+    <span class="k">let</span> <span class="i">firstName</span>, <span class="i">lastName</span> <span class="o">=</span> <span class="i">nameTuple</span> <span class="c">// firstName and lastName now contain the two parts of the tuple</span>
+    <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="i">sprintf</span> <span class="s">&quot;%s %s&quot;</span> <span class="i">firstName</span> <span class="i">lastName</span>
+
+<span class="c">// destructuring directly in a method signature</span>
+<span class="k">let</span> <span class="i">printName</span> (<span class="i">firstName</span>, <span class="i">lastName</span>) <span class="o">=</span>
+    <span class="c">// again, firstName and lastName now contain the two parts of the tuple that was passed into the function</span>
+    <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="i">printfn</span> <span class="s">&quot;Name: %s, %s&quot;</span> <span class="i">lastName</span> <span class="i">firstName</span>
+
+<span class="c">// destructuring in a lambda</span>
+<span class="k">let</span> <span class="i">printNameLambda</span> <span class="o">=</span> <span class="k">fun</span> (<span class="i">firstName</span>, <span class="i">lastName</span>) <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">printfn</span> <span class="s">&quot;Name: %s, %s&quot;</span> <span class="i">lastName</span> <span class="i">firstName</span>
+
+<span class="c">// destructuring in a match expression</span>
+<span class="k">let</span> <span class="i">getTitle</span> <span class="i">nameTuple</span> <span class="o">=</span>
+    <span class="k">match</span> <span class="i">nameTuple</span> <span class="k">with</span>
+    | <span class="s">&quot;Don&quot;</span>, <span class="s">&quot;Syme&quot;</span> <span class="k">-&gt;</span> <span class="s">&quot;Creator of F#&quot;</span>
+    | <span class="i">firstName</span>, <span class="i">lastName</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs2', 6)" onmouseover="showTip(event, 'fs2', 6)" class="i">sprintf</span> <span class="s">&quot;Someone else named %s %s&quot;</span> <span class="i">firstName</span> <span class="i">lastName</span>
+
+<span class="c">// destructuring in a for loop</span>
+<span class="c">// (This one may be a little less well known; I learned that from Dave Fancher&#39;s &quot;The Book of F#&quot;.)</span>
+<span class="k">let</span> <span class="i">printNames</span> (<span class="i">names</span> <span class="o">:</span> (<span onmouseout="hideTip(event, 'fs1', 7)" onmouseover="showTip(event, 'fs1', 7)" class="i">string</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs1', 8)" onmouseover="showTip(event, 'fs1', 8)" class="i">string</span>) <span onmouseout="hideTip(event, 'fs4', 9)" onmouseover="showTip(event, 'fs4', 9)" class="i">seq</span>) <span class="o">=</span>
+    <span class="k">for</span> <span class="i">firstName</span>, <span class="i">lastName</span> <span class="k">in</span> <span class="i">names</span> <span class="k">do</span>
+        <span onmouseout="hideTip(event, 'fs3', 10)" onmouseover="showTip(event, 'fs3', 10)" class="i">printfn</span> <span class="s">&quot;Person named %s %s&quot;</span> <span class="i">firstName</span> <span class="i">lastName</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>....you get the picture. Did I forget something important?</p>
+
+<p>Now, in all those cases (there <em>may</em> be rare exceptions that I'm not presently aware of), you can also use the other forms of pattern matching, such as Active Patterns.</p>
+
+<p>Yes, you can use <a href="http://luketopia.net/2014/09/11/interesting-active-patterns/">Active Patterns in function signatures</a>.</p>
+
+<p>You can also use a type test in a <code>for</code> loop:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">for</span> <span class="o">:?</span> <span onmouseout="hideTip(event, 'fs1', 11)" onmouseover="showTip(event, 'fs1', 11)" class="i">string</span> <span class="k">as</span> <span class="i">x</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs5', 12)" onmouseover="showTip(event, 'fs5', 12)" class="i">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 13)" onmouseover="showTip(event, 'fs6', 13)" class="i">empty</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs7', 14)" onmouseover="showTip(event, 'fs7', 14)" class="i">obj</span><span class="o">&gt;</span> <span class="k">do</span> <span onmouseout="hideTip(event, 'fs3', 15)" onmouseover="showTip(event, 'fs3', 15)" class="i">printfn</span> <span class="s">&quot;%s&quot;</span> <span class="i">x</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>(The compiler will notify you that there might be unmatched cases that would then be ignored - so this works like LINQ's <code>.OfType&lt;'T&gt;()</code>.)</p>
+
+<p>Something that seems to be a little less well known is pattern matching on the fields of record types, both in the form of destructuring assignments and actual comparison matches, but that works just as well in all those cases. The syntax for it is the same as if you were constructing a record of the respective type, except that it is not required to use all the fields of the type.</p>
+
+<p>Let's say we have turned the above name tuple into a a proper type:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">Person</span> <span class="o">=</span> { <span class="i">FirstName</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs1', 16)" onmouseover="showTip(event, 'fs1', 16)" class="i">string</span>; <span class="i">LastName</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs1', 17)" onmouseover="showTip(event, 'fs1', 17)" class="i">string</span>; <span class="i">Age</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs8', 18)" onmouseover="showTip(event, 'fs8', 18)" class="i">int</span> }
+</code></pre></td>
+</tr>
+</table>
+
+<p>We can use this now in all the ways we used the tuple above:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// simple destructuring assignment</span>
+<span class="k">let</span> <span class="i">getNameFromRecord</span> <span class="i">person</span> <span class="o">=</span>
+    <span class="k">let</span> { <span class="i">FirstName</span> <span class="o">=</span> <span class="i">firstName</span>; <span class="i">LastName</span> <span class="o">=</span> <span class="i">lastName</span> } <span class="o">=</span> <span class="i">person</span>
+    <span onmouseout="hideTip(event, 'fs2', 19)" onmouseover="showTip(event, 'fs2', 19)" class="i">sprintf</span> <span class="s">&quot;%s %s&quot;</span> <span class="i">firstName</span> <span class="i">lastName</span>
+    
+<span class="c">// destructuring directly in a method signature</span>
+<span class="k">let</span> <span class="i">printNameFromRecord</span> { <span class="i">FirstName</span> <span class="o">=</span> <span class="i">firstName</span>; <span class="i">LastName</span> <span class="o">=</span> <span class="i">lastName</span> } <span class="o">=</span>
+    <span class="c">// again, firstName and lastName now contain the two parts of the tuple that was passed into the function</span>
+    <span onmouseout="hideTip(event, 'fs3', 20)" onmouseover="showTip(event, 'fs3', 20)" class="i">printfn</span> <span class="s">&quot;Name: %s, %s&quot;</span> <span class="i">lastName</span> <span class="i">firstName</span>
+
+<span class="c">// destructuring in a lambda</span>
+<span class="k">let</span> <span class="i">printNameLambdaFromRecord</span> <span class="o">=</span>
+    <span class="k">fun</span> { <span class="i">FirstName</span> <span class="o">=</span> <span class="i">firstName</span>; <span class="i">LastName</span> <span class="o">=</span> <span class="i">lastName</span> } <span class="k">-&gt;</span>
+        <span onmouseout="hideTip(event, 'fs3', 21)" onmouseover="showTip(event, 'fs3', 21)" class="i">printfn</span> <span class="s">&quot;Name: %s, %s&quot;</span> <span class="i">lastName</span> <span class="i">firstName</span>
+
+<span class="c">// destructuring in a match expression</span>
+<span class="k">let</span> <span class="i">getTitleFromRecord</span> <span class="i">person</span> <span class="o">=</span>
+    <span class="k">match</span> <span class="i">person</span> <span class="k">with</span>
+    | { <span class="i">FirstName</span> <span class="o">=</span> <span class="s">&quot;Don&quot;</span>; <span class="i">LastName</span> <span class="o">=</span> <span class="s">&quot;Syme&quot;</span>} <span class="k">-&gt;</span> <span class="s">&quot;Creator of F#&quot;</span>
+    | { <span class="i">FirstName</span> <span class="o">=</span> <span class="i">firstName</span>; <span class="i">LastName</span> <span class="o">=</span> <span class="i">lastName</span>; <span class="i">Age</span> <span class="o">=</span> <span class="i">age</span> } <span class="k">-&gt;</span>
+        <span onmouseout="hideTip(event, 'fs2', 22)" onmouseover="showTip(event, 'fs2', 22)" class="i">sprintf</span> <span class="s">&quot;Someone else named %s %s, aged %i&quot;</span> <span class="i">firstName</span> <span class="i">lastName</span> <span class="i">age</span>
+
+<span class="c">// destructuring in a for loop</span>
+<span class="k">let</span> <span class="i">printNamesFromRecord</span> <span class="i">persons</span> <span class="o">=</span>
+    <span class="k">for</span> { <span class="i">FirstName</span> <span class="o">=</span> <span class="i">firstName</span>; <span class="i">LastName</span> <span class="o">=</span> <span class="i">lastName</span> } <span class="k">in</span> <span class="i">persons</span> <span class="k">do</span>
+        <span onmouseout="hideTip(event, 'fs3', 23)" onmouseover="showTip(event, 'fs3', 23)" class="i">printfn</span> <span class="s">&quot;Person named %s %s&quot;</span> <span class="i">firstName</span> <span class="i">lastName</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>Now, while this is pretty neat, I don't find myself using it a lot, which is in part due to the fact that when for example matching the argument of a lambda this way, you lose the reference to the record itself.</p>
+
+<p>When I wrote this on Twitter, <a href="https://twitter.com/Dead_Stroke/status/684106309248024577">Shane Charles</a> had the right answer: You can always additionally bind the original value to a name with the <code>as</code> keyword. Always.</p>
+
+<p>The most common use of this concept in pattern matching are probably type tests:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">try</span>
+    ()
+<span class="k">with</span>
+| <span class="o">:?</span> <span onmouseout="hideTip(event, 'fs9', 24)" onmouseover="showTip(event, 'fs9', 24)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs10', 25)" onmouseover="showTip(event, 'fs10', 25)" class="i">OutOfMemoryException</span> <span class="k">as</span> <span class="i">ex</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs3', 26)" onmouseover="showTip(event, 'fs3', 26)" class="i">printfn</span> <span class="s">&quot;Out of memory: %s&quot;</span> <span class="i">ex</span><span class="o">.</span><span class="i">Message</span>
+| <span class="i">ex</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs3', 27)" onmouseover="showTip(event, 'fs3', 27)" class="i">printfn</span> <span class="s">&quot;Something else happened: %s&quot;</span> <span class="i">ex</span><span class="o">.</span><span class="i">Message</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>But this really works pretty much everywhere (even though it might not always make sense to use it):</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// destructuring directly in a method signature</span>
+<span class="k">let</span> <span class="i">printNameFromRecordTee</span> ({ <span class="i">FirstName</span> <span class="o">=</span> <span class="i">firstName</span>; <span class="i">LastName</span> <span class="o">=</span> <span class="i">lastName</span> } <span class="k">as</span> <span class="i">person</span>) <span class="o">=</span>
+    <span class="c">// again, firstName and lastName now contain the two parts of the tuple that was passed into the function</span>
+    <span onmouseout="hideTip(event, 'fs3', 28)" onmouseover="showTip(event, 'fs3', 28)" class="i">printfn</span> <span class="s">&quot;Name: %s, %s&quot;</span> <span class="i">lastName</span> <span class="i">firstName</span>
+    <span class="i">person</span>
+
+<span class="c">// destructuring in a lambda</span>
+<span class="k">let</span> <span class="i">printNameLambdaFromRecordTee</span> <span class="o">=</span>
+    <span class="k">fun</span> ({ <span class="i">FirstName</span> <span class="o">=</span> <span class="i">firstName</span>; <span class="i">LastName</span> <span class="o">=</span> <span class="i">lastName</span> } <span class="k">as</span> <span class="i">person</span>) <span class="k">-&gt;</span>
+        <span onmouseout="hideTip(event, 'fs3', 29)" onmouseover="showTip(event, 'fs3', 29)" class="i">printfn</span> <span class="s">&quot;Name: %s, %s&quot;</span> <span class="i">lastName</span> <span class="i">firstName</span>
+        <span class="i">person</span>
+
+<span class="c">// destructuring in a match expression</span>
+<span class="k">let</span> <span class="i">getTitleFromRecordWithAge</span> <span class="i">person</span> <span class="o">=</span>
+    <span class="k">match</span> <span class="i">person</span> <span class="k">with</span>
+    | { <span class="i">FirstName</span> <span class="o">=</span> <span class="s">&quot;Don&quot;</span>; <span class="i">LastName</span> <span class="o">=</span> <span class="s">&quot;Syme&quot;</span>} <span class="k">-&gt;</span> <span class="s">&quot;Creator of F#&quot;</span>
+    | { <span class="i">FirstName</span> <span class="o">=</span> <span class="i">firstName</span>; <span class="i">LastName</span> <span class="o">=</span> <span class="i">lastName</span> } <span class="k">as</span> <span class="i">p</span> <span class="k">-&gt;</span>
+        <span onmouseout="hideTip(event, 'fs2', 30)" onmouseover="showTip(event, 'fs2', 30)" class="i">sprintf</span> <span class="s">&quot;Someone else named %s %s, aged %i&quot;</span> <span class="i">firstName</span> <span class="i">lastName</span> <span class="i">p</span><span class="o">.</span><span class="i">Age</span>
+
+<span class="c">// destructuring in a for loop</span>
+<span class="k">let</span> <span class="i">printSymesFromREcord</span> <span class="i">persons</span> <span class="o">=</span>
+    <span class="k">for</span> { <span class="i">FirstName</span> <span class="o">=</span> <span class="i">firstName</span>; <span class="i">LastName</span> <span class="o">=</span> <span class="s">&quot;Syme&quot;</span> } <span class="k">as</span> <span class="i">syme</span> <span class="k">in</span> <span class="i">persons</span> <span class="k">do</span>
+        <span onmouseout="hideTip(event, 'fs3', 31)" onmouseover="showTip(event, 'fs3', 31)" class="i">printfn</span> <span class="s">&quot;Syme named %s, aged %i&quot;</span> <span class="i">firstName</span> <span class="i">syme</span><span class="o">.</span><span class="i">Age</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>That last one again gives us a compiler warning about incomplete matches, but anyone not from the Syme family will simply be ignored.</p>
+
+<p>By the way, you can of course also use <code>as</code> with Active Patterns:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> (|<span class="i">FizzBuzz</span>|_|) <span class="i">i</span> <span class="o">=</span> 
+    <span class="k">match</span> <span class="i">i</span> <span class="o">%</span> <span class="n">3</span>, <span class="i">i</span> <span class="o">%</span> <span class="n">5</span> <span class="k">with</span>
+    | <span class="n">0</span>, <span class="n">0</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs11', 32)" onmouseover="showTip(event, 'fs11', 32)" class="i">Some</span> <span class="s">&quot;FizzBuzz&quot;</span>
+    | <span class="n">0</span>, _ <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs11', 33)" onmouseover="showTip(event, 'fs11', 33)" class="i">Some</span> <span class="s">&quot;Fizz&quot;</span>
+    | _, <span class="n">0</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs11', 34)" onmouseover="showTip(event, 'fs11', 34)" class="i">Some</span> <span class="s">&quot;Buzz&quot;</span>
+    | _ <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs12', 35)" onmouseover="showTip(event, 'fs12', 35)" class="i">None</span>
+
+<span class="k">let</span> <span class="i">fizzBuzz</span> <span class="o">=</span> <span class="k">function</span>
+    | <span class="i">FizzBuzz</span> <span class="i">s</span> <span class="k">as</span> <span class="i">x</span> <span class="k">-&gt;</span> <span class="i">s</span>, <span class="i">x</span>
+    | _ <span class="k">as</span> <span class="i">x</span> <span class="k">-&gt;</span> <span class="s">&quot;&quot;</span>, <span class="i">x</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>While this is a bit nonsensical, it demonstrates the point: The <code>fizzBuzz</code> function has type <code>int -&gt; string * int</code>, and while the signature does not actually give a reference to the integer argument, we can still obtain it from the match expression.</p>
+
+<p>Did you know about pattern matching on record fields? If you didn't, you too (along with Reid Evans and John Azariah) are now one of today's 10.000!</p>
+
+<p><img src="http://imgs.xkcd.com/comics/ten_thousand.png" alt="" /></p>
+
+<p>(<a href="https://xkcd.com/1053/">via XKCD</a>)</p>
+
+<hr />
+
+<p>Written on my HP ZBook with <a href="http://ionide.io/">Ionide</a> and <a href="https://code.visualstudio.com/">Visual Studio Code</a></p>
+
+
+<div class="tip" id="fs1">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs2">val sprintf : format:Printf.StringFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.sprintf</div>
+<div class="tip" id="fs3">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.printfn</div>
+<div class="tip" id="fs4">Multiple items<br />val seq : sequence:seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.Operators.seq<br /><br />--------------------<br />type seq&lt;&#39;T&gt; = System.Collections.Generic.IEnumerable&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.seq&lt;_&gt;</div>
+<div class="tip" id="fs5">module Seq<br /><br />from Microsoft.FSharp.Collections</div>
+<div class="tip" id="fs6">val empty&lt;&#39;T&gt; : seq&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.Seq.empty</div>
+<div class="tip" id="fs7">type obj = System.Object<br /><br />Full name: Microsoft.FSharp.Core.obj</div>
+<div class="tip" id="fs8">Multiple items<br />val int : value:&#39;T -&gt; int (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.int<br /><br />--------------------<br />type int = int32<br /><br />Full name: Microsoft.FSharp.Core.int<br /><br />--------------------<br />type int&lt;&#39;Measure&gt; = int<br /><br />Full name: Microsoft.FSharp.Core.int&lt;_&gt;</div>
+<div class="tip" id="fs9">namespace System</div>
+<div class="tip" id="fs10">Multiple items<br />type OutOfMemoryException =<br />&#160;&#160;inherit SystemException<br />&#160;&#160;new : unit -&gt; OutOfMemoryException + 2 overloads<br /><br />Full name: System.OutOfMemoryException<br /><br />--------------------<br />System.OutOfMemoryException() : unit<br />System.OutOfMemoryException(message: string) : unit<br />System.OutOfMemoryException(message: string, innerException: exn) : unit</div>
+<div class="tip" id="fs11">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
+<div class="tip" id="fs12">union case Option.None: Option&lt;&#39;T&gt;</div>

@@ -3,6 +3,8 @@ layout: page
 title: Pattern Matching (not only) on Record Fields
 ---
 
+<h2>The Many Forms Of Tatching Muples</h2>
+
 <p>Everyone who has used F# pattern matching knows how powerful it is, but interestingly it is often overlooked that all the different aspects are always equally applicable.</p>
 
 <p>Destructuring tuples is something every F# programmer is probably well versed in in all its forms:</p>
@@ -77,6 +79,8 @@ title: Pattern Matching (not only) on Record Fields
 
 <p>(The compiler will notify you that there might be unmatched cases that would then be ignored - so this works like LINQ's <code>.OfType&lt;'T&gt;()</code>.)</p>
 
+<h2>Record Breaking Pattern Matching</h2>
+
 <p>Something that seems to be a little less well known is pattern matching on the fields of record types, both in the form of destructuring assignments and actual comparison matches, but that works just as well in all those cases. The syntax for it is the same as if you were constructing a record of the respective type, except that it is not required to use all the fields of the type.</p>
 
 <p>Let's say we have turned the above name tuple into a a proper type:</p>
@@ -148,6 +152,8 @@ title: Pattern Matching (not only) on Record Fields
 </table>
 
 <p>Now, while this is pretty neat, I don't find myself using it a lot, which is in part due to the fact that when for example matching the argument of a lambda this way, you lose the reference to the record itself.</p>
+
+<h2>'as' Is It</h2>
 
 <p>When I wrote this on Twitter, <a href="https://twitter.com/Dead_Stroke/status/684106309248024577">Shane Charles</a> had the right answer: You can always additionally bind the original value to a name with the <code>as</code> keyword. Always.</p>
 

@@ -5,6 +5,8 @@ title: Pattern Matching (not only) on Record Fields
 ---
 
 (**
+## The Many Forms Of Tatching Muples
+
 Everyone who has used F# pattern matching knows how powerful it is, but interestingly it is often overlooked that all the different aspects are always equally applicable.
 
 Destructuring tuples is something every F# programmer is probably well versed in in all its forms:
@@ -50,6 +52,8 @@ for :? string as x in Seq.empty<obj> do printfn "%s" x
 (**
 (The compiler will notify you that there might be unmatched cases that would then be ignored - so this works like LINQ's `.OfType<'T>()`.)
 
+## Record Breaking Pattern Matching
+
 Something that seems to be a little less well known is pattern matching on the fields of record types, both in the form of destructuring assignments and actual comparison matches, but that works just as well in all those cases. The syntax for it is the same as if you were constructing a record of the respective type, except that it is not required to use all the fields of the type.
 
 Let's say we have turned the above name tuple into a a proper type:
@@ -90,6 +94,8 @@ let printNamesFromRecord persons =
 
 (**
 Now, while this is pretty neat, I don't find myself using it a lot, which is in part due to the fact that when for example matching the argument of a lambda this way, you lose the reference to the record itself.
+
+##'as' Is It
 
 When I wrote this on Twitter, [Shane Charles](https://twitter.com/Dead_Stroke/status/684106309248024577) had the right answer: You can always additionally bind the original value to a name with the `as` keyword. Always.
 

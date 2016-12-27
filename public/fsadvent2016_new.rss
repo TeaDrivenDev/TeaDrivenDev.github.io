@@ -1,21 +1,39 @@
 <rss version="2.0">
   <channel>
     <title>F# Advent Calendar 2016</title>
-    <link>https://sergeytihon.wordpress.com/2015/10/25/f-advent-calendar-in-english-2015/</link>
+    <link>https://sergeytihon.wordpress.com/2016/10/23/f-advent-calendar-in-english-2016/</link>
     <description>F# Advent Calendar 2016</description>
-    <pubDate>Mon, 26 Dec 2016 00:21:46 GMT</pubDate>
-    <lastBuildDate>Mon, 26 Dec 2016 00:21:46 GMT</lastBuildDate>
+    <pubDate>Tue, 27 Dec 2016 04:04:37 GMT</pubDate>
+    <lastBuildDate>Tue, 27 Dec 2016 04:04:37 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 26 | Marcel Schwark | Implementing Pong in a functional manner with Fable</title>
+      <link>http://oopbase.de/implementing-pong-in-a-functional-manner-with-fable/</link>
+      <guid>http://oopbase.de/implementing-pong-in-a-functional-manner-with-fable/</guid>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 26 | Tamizh Vendan | Implementing Two-Factor Authentication in Suave</title>
+      <link>http://blog.tamizhvendan.in/blog/2016/12/26/implementing-two-factor-authentication-in-suave/</link>
+      <guid>http://blog.tamizhvendan.in/blog/2016/12/26/implementing-two-factor-authentication-in-suave/</guid>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 25 | Leif Battermann | Purity in an impure language with the free monad – by example of a Tic-Tac-Toe backend with CQRS and event sourcing</title>
+      <link>http://blog.leifbattermann.de/2016/12/25/purity-in-an-impure-language-free-monad-tic-tac-toe-cqrs-event-souring/</link>
+      <guid>http://blog.leifbattermann.de/2016/12/25/purity-in-an-impure-language-free-monad-tic-tac-toe-cqrs-event-souring/</guid>
+      <pubDate>Sun, 25 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 25 | Jamie Dixon | Age and Sex Analysis Of Microsoft USA MVPs</title>
+      <link>https://jamessdixon.wordpress.com/2016/12/25/age-and-sex-analysis-of-microsoft-usa-mvps/</link>
+      <guid>https://jamessdixon.wordpress.com/2016/12/25/age-and-sex-analysis-of-microsoft-usa-mvps/</guid>
+      <pubDate>Sun, 25 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 24 | Ross McKinlay + Andrea McAts | When Playstation meets F#, PSX |&amp;gt; Pi</title>
       <link>https://github.com/ChipmunkHand/ChipmunkHand/blob/master/blog/psx.md</link>
       <guid>https://github.com/ChipmunkHand/ChipmunkHand/blob/master/blog/psx.md</guid>
-      <pubDate>Sat, 24 Dec 2016 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>Dec 24 | Roman Nevolin | soon</title>
-      <link>https://sergeytihon.wordpress.com/2016/10/23/f-advent-calendar-in-english-2016/#comment-6241</link>
-      <guid>https://sergeytihon.wordpress.com/2016/10/23/f-advent-calendar-in-english-2016/#comment-6241</guid>
       <pubDate>Sat, 24 Dec 2016 00:00:00 GMT</pubDate>
     </item>
     <item>
@@ -37,12 +55,6 @@
       <pubDate>Thu, 22 Dec 2016 00:00:00 GMT</pubDate>
     </item>
     <item>
-      <title>Dec 22 | Stachu Korick | soon</title>
-      <link>https://twitter.com/StachuDotNet/status/812090849957908481</link>
-      <guid>https://twitter.com/StachuDotNet/status/812090849957908481</guid>
-      <pubDate>Thu, 22 Dec 2016 00:00:00 GMT</pubDate>
-    </item>
-    <item>
       <title>Dec 21 | Elastic Inc | Solidifying Releases with FAKE (F# MAKE)</title>
       <link>https://www.elastic.co/blog/solidifying-releases-with-fsharp-make</link>
       <guid>https://www.elastic.co/blog/solidifying-releases-with-fsharp-make</guid>
@@ -61,12 +73,6 @@
       <pubDate>Tue, 20 Dec 2016 00:00:00 GMT</pubDate>
     </item>
     <item>
-      <title>Dec 20 | Тэ дрэвэт утвикλэрэн | soon</title>
-      <link>https://twitter.com/TeaDrivenDev/status/811208426562945029</link>
-      <guid>https://twitter.com/TeaDrivenDev/status/811208426562945029</guid>
-      <pubDate>Tue, 20 Dec 2016 00:00:00 GMT</pubDate>
-    </item>
-    <item>
       <title>Dec 19 | Tomasz Jaskuλa | Data structures and algorithms – helping Santa Claus find his road to San Francisco</title>
       <link>http://jaskula.fr//blog/2016/12-19-data-structures-and-algorithms-helping-santa-claus-find-his-road-to-san-francisco/index.html#</link>
       <guid>http://jaskula.fr//blog/2016/12-19-data-structures-and-algorithms-helping-santa-claus-find-his-road-to-san-francisco/index.html#</guid>
@@ -77,12 +83,6 @@
       <link>http://theimowski.com/blog/2016/12-19-creating-a-tutorial-from-git-repo/index.html</link>
       <guid>http://theimowski.com/blog/2016/12-19-creating-a-tutorial-from-git-repo/index.html</guid>
       <pubDate>Mon, 19 Dec 2016 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>Dec 18 | Paweł Stadnicki | New Year Eve</title>
-      <link>https://sergeytihon.wordpress.com/2016/10/23/f-advent-calendar-in-english-2016/#comment-6225</link>
-      <guid>https://sergeytihon.wordpress.com/2016/10/23/f-advent-calendar-in-english-2016/#comment-6225</guid>
-      <pubDate>Sun, 18 Dec 2016 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Dec 17 | Jan Schiefer | Accessing native C libraries on Linux with F# and .Net Core</title>
@@ -118,12 +118,6 @@
       <title>Dec 14 | Troy Kershaw | The AsyncArrow</title>
       <link>https://troykershaw.com/the-asyncarrow/</link>
       <guid>https://troykershaw.com/the-asyncarrow/</guid>
-      <pubDate>Wed, 14 Dec 2016 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>Dec 14 | Bryan Hunter | soon</title>
-      <link>https://twitter.com/bryan_hunter/status/809133346127302656</link>
-      <guid>https://twitter.com/bryan_hunter/status/809133346127302656</guid>
       <pubDate>Wed, 14 Dec 2016 00:00:00 GMT</pubDate>
     </item>
     <item>

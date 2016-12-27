@@ -1,0 +1,16 @@
+<rss version="2.0">
+  <channel>
+    <title>F# Advent Calendar 2016</title>
+    <link>https://sergeytihon.wordpress.com/2016/10/23/f-advent-calendar-in-english-2016/</link>
+    <description>F# Advent Calendar 2016</description>
+    <pubDate>Tue, 27 Dec 2016 15:03:53 GMT</pubDate>
+    <lastBuildDate>Tue, 27 Dec 2016 15:03:53 GMT</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Nov 27 | Anthony Lloyd | Functional Event Sourcing meets The Elm Architecture</title>
+      <link>http://anthonylloyd.github.io/blog/2016/11/27/event-sourcing</link>
+      <guid>http://anthonylloyd.github.io/blog/2016/11/27/event-sourcing</guid>
+      <pubDate>Sun, 27 Nov 2016 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

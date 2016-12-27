@@ -3,9 +3,315 @@
     <title>F# Advent Calendar 2016</title>
     <link>https://sergeytihon.wordpress.com/2016/10/23/f-advent-calendar-in-english-2016/</link>
     <description>F# Advent Calendar 2016</description>
-    <pubDate>Tue, 27 Dec 2016 15:03:53 GMT</pubDate>
-    <lastBuildDate>Tue, 27 Dec 2016 15:03:53 GMT</lastBuildDate>
+    <pubDate>Tue, 27 Dec 2016 15:14:58 GMT</pubDate>
+    <lastBuildDate>Tue, 27 Dec 2016 15:14:58 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 26 | Marcel Schwark | Implementing Pong in a functional manner with Fable</title>
+      <link>http://oopbase.de/implementing-pong-in-a-functional-manner-with-fable/</link>
+      <guid>http://oopbase.de/implementing-pong-in-a-functional-manner-with-fable/</guid>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 26 | Tamizh Vendan | Implementing Two-Factor Authentication in Suave</title>
+      <link>http://blog.tamizhvendan.in/blog/2016/12/26/implementing-two-factor-authentication-in-suave/</link>
+      <guid>http://blog.tamizhvendan.in/blog/2016/12/26/implementing-two-factor-authentication-in-suave/</guid>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 25 | Leif Battermann | Purity in an impure language with the free monad – by example of a Tic-Tac-Toe backend with CQRS and event sourcing</title>
+      <link>http://blog.leifbattermann.de/2016/12/25/purity-in-an-impure-language-free-monad-tic-tac-toe-cqrs-event-souring/</link>
+      <guid>http://blog.leifbattermann.de/2016/12/25/purity-in-an-impure-language-free-monad-tic-tac-toe-cqrs-event-souring/</guid>
+      <pubDate>Sun, 25 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 25 | Jamie Dixon | Age and Sex Analysis Of Microsoft USA MVPs</title>
+      <link>https://jamessdixon.wordpress.com/2016/12/25/age-and-sex-analysis-of-microsoft-usa-mvps/</link>
+      <guid>https://jamessdixon.wordpress.com/2016/12/25/age-and-sex-analysis-of-microsoft-usa-mvps/</guid>
+      <pubDate>Sun, 25 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 24 | Ross McKinlay + Andrea McAts | When Playstation meets F#, PSX |&amp;gt; Pi</title>
+      <link>https://github.com/ChipmunkHand/ChipmunkHand/blob/master/blog/psx.md</link>
+      <guid>https://github.com/ChipmunkHand/ChipmunkHand/blob/master/blog/psx.md</guid>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 23 | kekyo2 | About Expandable F# Compiler project</title>
+      <link>http://www.kekyo.net/2016/12/23/6305</link>
+      <guid>http://www.kekyo.net/2016/12/23/6305</guid>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 23 | Carsten König | Advent with a Star</title>
+      <link>http://gettingsharper.de/2016/12/23/advent-with-a-star/</link>
+      <guid>http://gettingsharper.de/2016/12/23/advent-with-a-star/</guid>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 22 | David Podhola | Hello fable-import-sharepoint</title>
+      <link>http://www.naseukoly.cz/blog/2016/12-20-hello-fable-import-sharepoint/index.html</link>
+      <guid>http://www.naseukoly.cz/blog/2016/12-20-hello-fable-import-sharepoint/index.html</guid>
+      <pubDate>Thu, 22 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 21 | Elastic Inc | Solidifying Releases with FAKE (F# MAKE)</title>
+      <link>https://www.elastic.co/blog/solidifying-releases-with-fsharp-make</link>
+      <guid>https://www.elastic.co/blog/solidifying-releases-with-fsharp-make</guid>
+      <pubDate>Wed, 21 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 21 | Riccardo Terrell | The Traveling Santa Problem… a Neural Network solution</title>
+      <link>http://www.rickyterrell.com/?p=97</link>
+      <guid>http://www.rickyterrell.com/?p=97</guid>
+      <pubDate>Wed, 21 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 20 | Vagif Abilov | reF#actoring: rewriting an actor in F#</title>
+      <link>https://miles.no/blogg/refactoring-rewriting-an-actor-in-f</link>
+      <guid>https://miles.no/blogg/refactoring-rewriting-an-actor-in-f</guid>
+      <pubDate>Tue, 20 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 19 | Tomasz Jaskuλa | Data structures and algorithms – helping Santa Claus find his road to San Francisco</title>
+      <link>http://jaskula.fr//blog/2016/12-19-data-structures-and-algorithms-helping-santa-claus-find-his-road-to-san-francisco/index.html#</link>
+      <guid>http://jaskula.fr//blog/2016/12-19-data-structures-and-algorithms-helping-santa-claus-find-his-road-to-san-francisco/index.html#</guid>
+      <pubDate>Mon, 19 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 19 | Tomasz Heimowski | Creating a tutorial from Git repo</title>
+      <link>http://theimowski.com/blog/2016/12-19-creating-a-tutorial-from-git-repo/index.html</link>
+      <guid>http://theimowski.com/blog/2016/12-19-creating-a-tutorial-from-git-repo/index.html</guid>
+      <pubDate>Mon, 19 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 17 | Jan Schiefer | Accessing native C libraries on Linux with F# and .Net Core</title>
+      <link>http://hamstr.net/f%23/2016/12/16/Accessing-Linux-C-libraries-with-F-and-.Net-Core/</link>
+      <guid>http://hamstr.net/f%23/2016/12/16/Accessing-Linux-C-libraries-with-F-and-.Net-Core/</guid>
+      <pubDate>Sat, 17 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 17 | Kunjan Dalal | Epic Adventure using F#</title>
+      <link>http://kunjan.in/2016/12/epic-adventure-using-fsharp/</link>
+      <guid>http://kunjan.in/2016/12/epic-adventure-using-fsharp/</guid>
+      <pubDate>Sat, 17 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 16 | Michael Newton | Advent 2016</title>
+      <link>http://blog.mavnn.co.uk/advent-2016/</link>
+      <guid>http://blog.mavnn.co.uk/advent-2016/</guid>
+      <pubDate>Fri, 16 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 15 | Dustin Moris Gorski | Running Suave in ASP.NET Core (and on top of Kestrel)</title>
+      <link>https://dusted.codes/running-suave-in-aspnet-core-and-on-top-of-kestrel</link>
+      <guid>https://dusted.codes/running-suave-in-aspnet-core-and-on-top-of-kestrel</guid>
+      <pubDate>Thu, 15 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 15 | Reed Copsey, Jr. | Christmas Trees in WPF, 2016 Edition </title>
+      <link>http://reedcopsey.com/2016/12/15/christmas-trees-in-wpf-2016-edition/</link>
+      <guid>http://reedcopsey.com/2016/12/15/christmas-trees-in-wpf-2016-edition/</guid>
+      <pubDate>Thu, 15 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 14 | Troy Kershaw | The AsyncArrow</title>
+      <link>https://troykershaw.com/the-asyncarrow/</link>
+      <guid>https://troykershaw.com/the-asyncarrow/</guid>
+      <pubDate>Wed, 14 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 13 | Isak Sky | Working with SQL syntax trees in F#</title>
+      <link>https://gist.github.com/isaksky/f8c4881bf93c7e57115439af07722ecc</link>
+      <guid>https://gist.github.com/isaksky/f8c4881bf93c7e57115439af07722ecc</guid>
+      <pubDate>Tue, 13 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 13 | Roman Provazník | Building F# community in Czech Republic</title>
+      <link>https://www.fsharping.com/blog/building-fsharp-community-in-czech-republic</link>
+      <guid>https://www.fsharping.com/blog/building-fsharp-community-in-czech-republic</guid>
+      <pubDate>Tue, 13 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 12 | Pierre-Luc Maheu | Scripting in F# using Fake and Paket</title>
+      <link>https://www.infoq.com/news/2016/12/fsharp-scripting-fake-paket</link>
+      <guid>https://www.infoq.com/news/2016/12/fsharp-scripting-fake-paket</guid>
+      <pubDate>Mon, 12 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 12 | Pierre Irrmann | Some advice to F# beginners</title>
+      <link>http://www.pirrmann.net/some-advice-to-f-beginners/</link>
+      <guid>http://www.pirrmann.net/some-advice-to-f-beginners/</guid>
+      <pubDate>Mon, 12 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 11 | Jeremy Abbott | Merry Monad Xmas</title>
+      <link>http://jeremyabbott.github.io/blog/2016/12-03-merry/</link>
+      <guid>http://jeremyabbott.github.io/blog/2016/12-03-merry/</guid>
+      <pubDate>Sun, 11 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 11 | Matt Olson | An Introduction To Testing Suave WebParts</title>
+      <link>http://mattjolson.github.io/2016/12/12/testing-suave-webparts.html</link>
+      <guid>http://mattjolson.github.io/2016/12/12/testing-suave-webparts.html</guid>
+      <pubDate>Sun, 11 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 10 | Erik Schierboom | Parsing text in F#</title>
+      <link>http://www.erikschierboom.com/2016/12/10/parsing-text-in-fsharp/</link>
+      <guid>http://www.erikschierboom.com/2016/12/10/parsing-text-in-fsharp/</guid>
+      <pubDate>Sat, 10 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 10 | Mårten Rånge | F# Advent – December 10, 2016 – Implementing a persistent hash map</title>
+      <link>https://gist.github.com/mrange/d6e7415113ebfa52ccb660f4ce534dd4</link>
+      <guid>https://gist.github.com/mrange/d6e7415113ebfa52ccb660f4ce534dd4</guid>
+      <pubDate>Sat, 10 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 09 | Gergely Kalapos | myTrades.Analytics – a netstandard compatible .NET technical analysis library written in F#</title>
+      <link>http://kalapos.net/Blog/ShowPost/MyTradesAnalytics-a-netstandard-compatible-technical-analysis-library</link>
+      <guid>http://kalapos.net/Blog/ShowPost/MyTradesAnalytics-a-netstandard-compatible-technical-analysis-library</guid>
+      <pubDate>Fri, 09 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 09 | Doug Bruce | Build Yourself a Robo-Advisor in F#. Part I : Domain Modelling</title>
+      <link>http://dougbruce.blogspot.com.by/2016/12/build-yourself-robo-advisor-in-f-part-i.html</link>
+      <guid>http://dougbruce.blogspot.com.by/2016/12/build-yourself-robo-advisor-in-f-part-i.html</guid>
+      <pubDate>Fri, 09 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 08 | Jonathan Leaver | RdKafka for F# Microservices</title>
+      <link>https://j-alexander.github.io/entry/2016/12/08/rdkafka-for-fsharp-microservices</link>
+      <guid>https://j-alexander.github.io/entry/2016/12/08/rdkafka-for-fsharp-microservices</guid>
+      <pubDate>Thu, 08 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 08 | Hussam Abu-Libdeh | How F# delighted this newbie while experimenting with distributed systems</title>
+      <link>https://hussam.github.io/fsadvent16/</link>
+      <guid>https://hussam.github.io/fsadvent16/</guid>
+      <pubDate>Thu, 08 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 07 | András Jankó | Distributed web applications in F# with WebSharper</title>
+      <link>http://websharper.com/blog-entry/5204/distributed-web-applications-in-f-with-websharper</link>
+      <guid>http://websharper.com/blog-entry/5204/distributed-web-applications-in-f-with-websharper</guid>
+      <pubDate>Wed, 07 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 07 | Edgar Sánchez | Describing images in your favorite human language</title>
+      <link>http://cogitoergofun.ghost.io/describing-images-in-your-favorite-human-language/</link>
+      <guid>http://cogitoergofun.ghost.io/describing-images-in-your-favorite-human-language/</guid>
+      <pubDate>Wed, 07 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 06 | Mark Heath | Asterisk Game in F# and WPF</title>
+      <link>http://markheath.net/post/asterisk-fsharp</link>
+      <guid>http://markheath.net/post/asterisk-fsharp</guid>
+      <pubDate>Tue, 06 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 06 | Daniel Bachler | Using F# on both the frontend and the backend</title>
+      <link>http://danielbachler.de/2016/12/10/f-sharp-on-the-frontend-and-the-backend.html</link>
+      <guid>http://danielbachler.de/2016/12/10/f-sharp-on-the-frontend-and-the-backend.html</guid>
+      <pubDate>Tue, 06 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 05 | Rachel Reese | Using type providers to post slack messages</title>
+      <link>http://rachelree.se/using-type-providers-to-post-slack-messages/</link>
+      <guid>http://rachelree.se/using-type-providers-to-post-slack-messages/</guid>
+      <pubDate>Mon, 05 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 05 | Scott Wlaschin | Functional approaches to dependency injection</title>
+      <link>http://fsharpforfunandprofit.com/posts/dependency-injection-1/</link>
+      <guid>http://fsharpforfunandprofit.com/posts/dependency-injection-1/</guid>
+      <pubDate>Mon, 05 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 04 | Phillip Trelford | X-Platform Development With Xamarin.Forms And F#</title>
+      <link>http://www.trelford.com/blog/post/XamarinForms.aspx</link>
+      <guid>http://www.trelford.com/blog/post/XamarinForms.aspx</guid>
+      <pubDate>Sun, 04 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 04 | Jérémie Chassaing |  fck: Fake Construction Kit</title>
+      <link>http://thinkbeforecoding.com/post/2016/12/04/fck%3A-Fake-Construction-Kit</link>
+      <guid>http://thinkbeforecoding.com/post/2016/12/04/fck%3A-Fake-Construction-Kit</guid>
+      <pubDate>Sun, 04 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 03 | Henrik Feldt | A gentle introduction to programming networked services on linux</title>
+      <link>https://github.com/haf/linux-intro-course</link>
+      <guid>https://github.com/haf/linux-intro-course</guid>
+      <pubDate>Sat, 03 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 02 | Kristian Schmidt | F# in Production</title>
+      <link>http://www.kreutz.us/2016/12/02/f-in-production/</link>
+      <guid>http://www.kreutz.us/2016/12/02/f-in-production/</guid>
+      <pubDate>Fri, 02 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 02 | Chet Husk | A Host of Issues: Migrating from UserVoice To GitHub Issues with Canopy and OctoKit.net</title>
+      <link>http://chethusk.blogspot.com.by/2016/12/a-host-of-issues-migrating-from.html</link>
+      <guid>http://chethusk.blogspot.com.by/2016/12/a-host-of-issues-migrating-from.html</guid>
+      <pubDate>Fri, 02 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 01 | Ramón Soto Mathiesen | Semantic Versioning .NET libraries and NuGet packages</title>
+      <link>http://blog.stermon.com/articles/2016/12/01/semantic-versioning-dotnet-libs-and-nuget-pkgs</link>
+      <guid>http://blog.stermon.com/articles/2016/12/01/semantic-versioning-dotnet-libs-and-nuget-pkgs</guid>
+      <pubDate>Thu, 01 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 01 | Steffen Forkmann | Context matters</title>
+      <link>http://www.navision-blog.de/blog/2016/12/01/context-matters/</link>
+      <guid>http://www.navision-blog.de/blog/2016/12/01/context-matters/</guid>
+      <pubDate>Thu, 01 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Nov 30 | Jeremy Bellows | NeuralFish – Evolving Neural Topologies in F#</title>
+      <link>http://jeremybellows.com/blog/NeuralFish-Evolving-Neural-Topologies-In-FSharp</link>
+      <guid>http://jeremybellows.com/blog/NeuralFish-Evolving-Neural-Topologies-In-FSharp</guid>
+      <pubDate>Wed, 30 Nov 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Nov 30 | Alfonso Garcia-Caro | Tree Shaking with Fable</title>
+      <link>http://fable.io/blog/Tree-shaking.html</link>
+      <guid>http://fable.io/blog/Tree-shaking.html</guid>
+      <pubDate>Wed, 30 Nov 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Nov 29 | josesoyo | Using OpenCL on F# via FSCL</title>
+      <link>https://josesoyo.wordpress.com/2016/11/29/using-opencl-on-f-via-fscl/</link>
+      <guid>https://josesoyo.wordpress.com/2016/11/29/using-opencl-on-f-via-fscl/</guid>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Nov 29 | Mikhail Shilkov | Introducing Stream Processing in F#</title>
+      <link>http://mikhail.io/2016/11/introducing-stream-processing-in-fsharp/</link>
+      <guid>http://mikhail.io/2016/11/introducing-stream-processing-in-fsharp/</guid>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Nov 28 | Bill Berry | Introduction to Azure IoT with Fsharp</title>
+      <link>http://www.lucidmotions.net/2016/11/introduction-to-azure-iot-with-fsharp.html</link>
+      <guid>http://www.lucidmotions.net/2016/11/introduction-to-azure-iot-with-fsharp.html</guid>
+      <pubDate>Mon, 28 Nov 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Nov 28 | Mark Seemann | Easy domain modelling with types</title>
+      <link>http://blog.ploeh.dk/2016/11/28/easy-domain-modelling-with-types/</link>
+      <guid>http://blog.ploeh.dk/2016/11/28/easy-domain-modelling-with-types/</guid>
+      <pubDate>Mon, 28 Nov 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Nov 27 | Rick Pack | F# Data Visualization for a Neophyte – CDC Open Data</title>
+      <link>https://rickpackblog.wordpress.com/2016/11/27/f-data-visualization-for-a-neophyte-cdc-open-data/</link>
+      <guid>https://rickpackblog.wordpress.com/2016/11/27/f-data-visualization-for-a-neophyte-cdc-open-data/</guid>
+      <pubDate>Sun, 27 Nov 2016 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Nov 27 | Anthony Lloyd | Functional Event Sourcing meets The Elm Architecture</title>
       <link>http://anthonylloyd.github.io/blog/2016/11/27/event-sourcing</link>

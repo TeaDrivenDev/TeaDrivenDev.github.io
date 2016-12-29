@@ -3,9 +3,21 @@
     <title>F# Advent Calendar 2016</title>
     <link>https://sergeytihon.wordpress.com/2016/10/23/f-advent-calendar-in-english-2016/</link>
     <description>F# Advent Calendar 2016</description>
-    <pubDate>Tue, 27 Dec 2016 04:04:37 GMT</pubDate>
-    <lastBuildDate>Tue, 27 Dec 2016 04:04:37 GMT</lastBuildDate>
+    <pubDate>Thu, 29 Dec 2016 23:05:17 GMT</pubDate>
+    <lastBuildDate>Thu, 29 Dec 2016 23:05:17 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 29 | Eriawan Kusumawardho | F# Advent: F# 4.0 function first constructor</title>
+      <link>http://fsharpmonologue.blogspot.com.by/2016/12/f-advent-f-40-function-first-constructor.html</link>
+      <guid>http://fsharpmonologue.blogspot.com.by/2016/12/f-advent-f-40-function-first-constructor.html</guid>
+      <pubDate>Thu, 29 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 27 | Jon Wood | Getting Up and Running with FsLab for Data Science </title>
+      <link>https://dotnetmeditations.com/blog/2016/12/27/getting-up-and-running-with-fslabs-for-data-science</link>
+      <guid>https://dotnetmeditations.com/blog/2016/12/27/getting-up-and-running-with-fslabs-for-data-science</guid>
+      <pubDate>Tue, 27 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 26 | Marcel Schwark | Implementing Pong in a functional manner with Fable</title>
       <link>http://oopbase.de/implementing-pong-in-a-functional-manner-with-fable/</link>
@@ -34,6 +46,12 @@
       <title>Dec 24 | Ross McKinlay + Andrea McAts | When Playstation meets F#, PSX |&amp;gt; Pi</title>
       <link>https://github.com/ChipmunkHand/ChipmunkHand/blob/master/blog/psx.md</link>
       <guid>https://github.com/ChipmunkHand/ChipmunkHand/blob/master/blog/psx.md</guid>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dec 24 | Roman Nevolin | The magic of type providers</title>
+      <link>https://medium.com/@nevoroman/the-magic-of-type-providers-7f6825acd54#.qo8nf32l0</link>
+      <guid>https://medium.com/@nevoroman/the-magic-of-type-providers-7f6825acd54#.qo8nf32l0</guid>
       <pubDate>Sat, 24 Dec 2016 00:00:00 GMT</pubDate>
     </item>
     <item>

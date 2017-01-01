@@ -3,9 +3,15 @@
     <title>F# Advent Calendar 2016</title>
     <link>https://sergeytihon.wordpress.com/2016/10/23/f-advent-calendar-in-english-2016/</link>
     <description>F# Advent Calendar 2016</description>
-    <pubDate>Sat, 31 Dec 2016 01:54:24 GMT</pubDate>
-    <lastBuildDate>Sat, 31 Dec 2016 01:54:24 GMT</lastBuildDate>
+    <pubDate>Sun, 01 Jan 2017 14:18:43 GMT</pubDate>
+    <lastBuildDate>Sun, 01 Jan 2017 14:18:43 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Dec 31 | Adam Granicz | Simple reactive scenarios with WebSharper</title>
+      <link>http://websharper.com/blog-entry/5226/simple-reactive-scenarios-with-websharper</link>
+      <guid>http://websharper.com/blog-entry/5226/simple-reactive-scenarios-with-websharper</guid>
+      <pubDate>Sat, 31 Dec 2016 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Dec 30 | Paulmichael Blasucci | Tips &amp;amp; Tricks to Improve Your F# Library’s Public API</title>
       <link>https://pblasucci.wordpress.com/2016/12/30/betterapi/</link>

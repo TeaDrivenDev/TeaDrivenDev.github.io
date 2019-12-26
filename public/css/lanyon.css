@@ -75,12 +75,12 @@ h1, h2, h3, h4, h5, h6 {
 .container {
   max-width: 28rem;
 }
-@media (min-width: 38rem) {
+@media (min-width: 38em) {
   .container {
     max-width: 32rem;
   }
 }
-@media (min-width: 56rem) {
+@media (min-width: 56em) {
   .container {
     max-width: 38rem;
   }
@@ -114,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0;
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 48em) {
   .masthead-title {
     text-align: center;
   }
@@ -155,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-transition: all .3s ease-in-out;
           transition: all .3s ease-in-out;
 }
-@media (min-width: 30rem) {
+@media (min-width: 30em) {
   .sidebar {
     font-size: .75rem; /* 14px */
   }
@@ -190,7 +190,7 @@ a.sidebar-nav-item:focus {
   border-color: transparent;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 48em) {
   .sidebar-item {
     padding: 1.5rem;
   }
@@ -202,54 +202,64 @@ a.sidebar-nav-item:focus {
 
 /* Hide the sidebar checkbox that we toggle with `.sidebar-toggle` */
 .sidebar-checkbox {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 /* Style the `label` that we use to target the `.sidebar-checkbox` */
 .sidebar-toggle {
   position: absolute;
-  top:  1rem;
+  top:  .8rem;
   left: 1rem;
   display: block;
-  width: 2.2rem;
-  padding: .5rem .65rem;
+  padding: .25rem .75rem;
   color: #505050;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: .25rem;
   cursor: pointer;
 }
-.sidebar-toggle:before {
-  display: block;
-  content: "";
-  width: 100%;
-  padding-bottom: .125rem;
-  border-top: .375rem double;
-  border-bottom: .125rem solid;
 
-  /* Make the border inside the box */
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+.sidebar-toggle:before {
+  display: inline-block;
+  width: 1rem;
+  height: .75rem;
+  content: "";
+  background-image: -webkit-linear-gradient(to bottom, #555, #555 20%, #fff 20%, #fff 40%, #555 40%, #555 60%, #fff 60%, #fff 80%, #555 80%, #555 100%);
+  background-image:    -moz-linear-gradient(to bottom, #555, #555 20%, #fff 20%, #fff 40%, #555 40%, #555 60%, #fff 60%, #fff 80%, #555 80%, #555 100%);
+  background-image:     -ms-linear-gradient(to bottom, #555, #555 20%, #fff 20%, #fff 40%, #555 40%, #555 60%, #fff 60%, #fff 80%, #555 80%, #555 100%);
+  background-image:         linear-gradient(to bottom, #555, #555 20%, #fff 20%, #fff 40%, #555 40%, #555 60%, #fff 60%, #fff 80%, #555 80%, #555 100%);
 }
 
 .sidebar-toggle:active,
+#sidebar-checkbox:focus ~ .sidebar-toggle,
 #sidebar-checkbox:checked ~ .sidebar-toggle {
   color: #fff;
-  background-color: #505050;
+  background-color: #555;
 }
 
-@media (min-width: 30.1rem) {
+.sidebar-toggle:active:before,
+#sidebar-checkbox:focus ~ .sidebar-toggle:before,
+#sidebar-checkbox:checked ~ .sidebar-toggle:before {
+  background-image: -webkit-linear-gradient(to bottom, #fff, #fff 20%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 40%, #fff 40%, #fff 60%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 80%, #fff 80%, #fff 100%);
+  background-image:    -moz-linear-gradient(to bottom, #fff, #fff 20%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 40%, #fff 40%, #fff 60%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 80%, #fff 80%, #fff 100%);
+  background-image:     -ms-linear-gradient(to bottom, #fff, #fff 20%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 40%, #fff 40%, #fff 60%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 80%, #fff 80%, #fff 100%);
+  background-image:         linear-gradient(to bottom, #fff, #fff 20%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 40%, #fff 40%, #fff 60%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 80%, #fff 80%, #fff 100%);
+}
+
+@media (min-width: 30.1em) {
   .sidebar-toggle {
     position: fixed;
-    width: 2.25rem;
-  }
-  .sidebar-toggle:before {
-    padding-bottom: .15rem;
-    border-top-width: .45rem;
-    border-bottom-width: .15rem;
   }
 }
 
+@media print {
+  .sidebar-toggle {
+    display: none;
+  }
+}
 
 /* Slide effect
  *
@@ -278,6 +288,7 @@ a.sidebar-nav-item:focus {
 }
 
 #sidebar-checkbox:checked + .sidebar {
+  z-index: 10;
   visibility: visible;
 }
 #sidebar-checkbox:checked ~ .sidebar,
@@ -377,7 +388,7 @@ a.pagination-item:hover {
   background-color: #f5f5f5;
 }
 
-@media (min-width: 30rem) {
+@media (min-width: 30em) {
   .pagination {
     margin: 3rem 0;
   }
@@ -449,12 +460,12 @@ a.pagination-item:hover {
 .theme-base-08d .container a,
 .theme-base-08d .sidebar-toggle,
 .theme-base-08d .related-posts li a:hover,
-.theme-base-08d .page h1,
-.theme-base-08d .page h2,
-.theme-base-08d .page h3,
-.theme-base-08d .page h4,
-.theme-base-08d .page h5,
-.theme-base-08d .page h6,
+.theme-base-08d .post h1,
+.theme-base-08d .post h2,
+.theme-base-08d .post h3,
+.theme-base-08d .post h4,
+.theme-base-08d .post h5,
+.theme-base-08d .post h6,
 .theme-base-08d .page-title,
 .theme-base-08d .post-title,
 .theme-base-08d .post-title a {
@@ -493,6 +504,7 @@ a.pagination-item:hover {
 /* Red */
 .theme-base-08 .sidebar,
 .theme-base-08 .sidebar-toggle:active,
+.theme-base-08 #sidebar-checkbox:focus ~ .sidebar-toggle,
 .theme-base-08 #sidebar-checkbox:checked ~ .sidebar-toggle {
   background-color: #ac4142;
 }
@@ -505,6 +517,7 @@ a.pagination-item:hover {
 /* Orange */
 .theme-base-09 .sidebar,
 .theme-base-09 .sidebar-toggle:active,
+.theme-base-09 #sidebar-checkbox:focus ~ .sidebar-toggle,
 .theme-base-09 #sidebar-checkbox:checked ~ .sidebar-toggle {
   background-color: #d28445;
 }
@@ -517,6 +530,7 @@ a.pagination-item:hover {
 /* Yellow */
 .theme-base-0a .sidebar,
 .theme-base-0a .sidebar-toggle:active,
+.theme-base-0a #sidebar-checkbox:focus ~ .sidebar-toggle,
 .theme-base-0a #sidebar-checkbox:checked ~ .sidebar-toggle {
   background-color: #f4bf75;
 }
@@ -529,6 +543,7 @@ a.pagination-item:hover {
 /* Green */
 .theme-base-0b .sidebar,
 .theme-base-0b .sidebar-toggle:active,
+.theme-base-0b #sidebar-checkbox:focus ~ .sidebar-toggle,
 .theme-base-0b #sidebar-checkbox:checked ~ .sidebar-toggle {
   background-color: #90a959;
 }
@@ -541,6 +556,7 @@ a.pagination-item:hover {
 /* Cyan */
 .theme-base-0c .sidebar,
 .theme-base-0c .sidebar-toggle:active,
+.theme-base-0c #sidebar-checkbox:focus ~ .sidebar-toggle,
 .theme-base-0c #sidebar-checkbox:checked ~ .sidebar-toggle {
   background-color: #75b5aa;
 }
@@ -553,6 +569,7 @@ a.pagination-item:hover {
 /* Blue */
 .theme-base-0d .sidebar,
 .theme-base-0d .sidebar-toggle:active,
+.theme-base-0d #sidebar-checkbox:focus ~ .sidebar-toggle,
 .theme-base-0d #sidebar-checkbox:checked ~ .sidebar-toggle {
   background-color: #6a9fb5;
 }
@@ -565,6 +582,7 @@ a.pagination-item:hover {
 /* Magenta */
 .theme-base-0e .sidebar,
 .theme-base-0e .sidebar-toggle:active,
+.theme-base-0e #sidebar-checkbox:focus ~ .sidebar-toggle,
 .theme-base-0e #sidebar-checkbox:checked ~ .sidebar-toggle {
   background-color: #aa759f;
 }
@@ -577,6 +595,7 @@ a.pagination-item:hover {
 /* Brown */
 .theme-base-0f .sidebar,
 .theme-base-0f .sidebar-toggle:active,
+.theme-base-0f #sidebar-checkbox:focus ~ .sidebar-toggle,
 .theme-base-0f #sidebar-checkbox:checked ~ .sidebar-toggle {
   background-color: #8f5536;
 }
@@ -584,4 +603,29 @@ a.pagination-item:hover {
 .theme-base-0f .sidebar-toggle,
 .theme-base-0f .related-posts li a:hover {
   color: #8f5536;
+}
+
+
+/*
+ * Overlay sidebar
+ *
+ * Make the sidebar content overlay the viewport content instead of pushing it
+ * aside when toggled.
+ */
+
+.sidebar-overlay #sidebar-checkbox:checked ~ .wrap {
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+}
+.sidebar-overlay #sidebar-checkbox:checked ~ .sidebar-toggle {
+  box-shadow: 0 0 0 .25rem #fff;
+}
+.sidebar-overlay #sidebar-checkbox:checked ~ .sidebar {
+  box-shadow: .25rem 0 .5rem rgba(0,0,0,.1);
+}
+
+/* Only one tweak for a reverse layout */
+.layout-reverse.sidebar-overlay #sidebar-checkbox:checked ~ .sidebar {
+  box-shadow: -.25rem 0 .5rem rgba(0,0,0,.1);
 }
